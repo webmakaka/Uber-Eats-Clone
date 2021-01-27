@@ -2,23 +2,24 @@
 
 <br/>
 
-**Demo:**
+## 01. Backend
 
-https://www.youtube.com/watch?v=A8-Arx0ql68
+### 004. Backend Setup
 
-**Original src:**
-
-https://github.com/nomadcoders/nuber-eats-backend
-
-https://github.com/nomadcoders/nuber-eats-frontend
+    $ npm install -g @nestjs/cli
 
 <br/>
 
-<hr/>
+    $ cd app
+    $ nest new backend
+    $ cd backend
+    $ npm run start
 
 <br/>
 
-### [Development](./Development.md)
+http://localhost:3000/
+
+<br/>
 
 <br/><br/>
 
