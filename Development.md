@@ -1,4 +1,4 @@
-# [nomadcoders.co] Uber Eats Clone [2020, ENG]
+# [nomadcoders.co] Uber Eats Clone [ENG, 2020]
 
 <br/>
 
@@ -40,6 +40,55 @@ https://docs.nestjs.com/graphql/quick-start#code-first
     $ nest generate module restaurants
 
 http://localhost:3000/graphql
+
+<br/>
+
+### 008. ObjectType
+
+<br/>
+
+### 009. Arguments
+
+<br/>
+
+### 010. InputTypes and ArgumentTypes
+
+<br/>
+
+### 011. Validating ArgsTypes
+
+    $ npm install class-validator class-transformer
+
+<br/>
+
+### 012. TypeORM and PostgreSQL
+
+    $ docker-compose up -d
+
+<br/>
+
+### 015. TypeORM Setup
+
+https://docs.nestjs.com/techniques/database
+
+    $ npm install @nestjs/typeorm typeorm pg
+
+<br/>
+
+### 016. Introducing ConfigService
+
+    $ npm install @nestjs/config
+    $ npm install cross-env
+
+<br/>
+
+### 017. Configuring ConfigService
+
+<br/>
+
+### 018. Validating ConfigService
+
+    $ npm install joi
 
 <br/>
 
