@@ -144,6 +144,46 @@ http://localhost:3000/graphql
 
 <br/>
 
+### 022. Recap
+
+<br/>
+
+### 023. Create Restaurant
+
+<br/>
+
+### 024. Mapped Types
+
+<br/>
+
+### 025. Optional Types and Columns
+
+<br/>
+
+```
+mutation {
+  createRestaurant(input: {
+    name: "Nico N",
+    isVegan: false,
+    address: "nico address"
+  })
+}
+```
+
+<br/>
+
+**returns:**
+
+```
+{
+  "data": {
+    "createRestaurant": true
+  }
+}
+```
+
+<br/>
+
 <br/><br/>
 
 ---
