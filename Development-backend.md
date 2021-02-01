@@ -232,6 +232,38 @@ mutation {
 
 <br/>
 
+### 031-033. Create Account Mutation
+
+```
+mutation {
+  createAccount(input: {
+    email: "a3333333@gmail.com",
+    password: "pass1234"
+    role:Client
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+**returns:**
+
+```
+{
+  "data": {
+    "createAccount": {
+      "ok": true,
+      "error": null
+    }
+  }
+}
+```
+
+<br/>
+
 <br/><br/>
 
 ---
