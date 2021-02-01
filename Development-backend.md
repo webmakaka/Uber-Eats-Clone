@@ -264,6 +264,10 @@ mutation {
 
 <br/>
 
+### 034. An Alternative Error
+
+<br/>
+
 <br/><br/>
 
 ---
