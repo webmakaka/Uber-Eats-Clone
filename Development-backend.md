@@ -237,7 +237,7 @@ mutation {
 ```
 mutation {
   createAccount(input: {
-    email: "a3333333@gmail.com",
+    email: "myemail@gmail.com",
     password: "pass1234"
     role:Client
   }){
@@ -265,6 +265,13 @@ mutation {
 <br/>
 
 ### 034. An Alternative Error
+
+<br/>
+
+### 035. Hashing Passwords
+
+    $ npm install bcrypt
+    $ npm install --save-dev @types/bcrypt
 
 <br/>
 
