@@ -184,6 +184,39 @@ mutation {
 
 <br/>
 
+### 026-027. Update Restaurant
+
+<br/>
+
+```
+mutation {
+  updateRestaurant(input: {
+    id: 2,
+    data: {
+      name: "Nico K",
+    isVegan: true,
+    address: "nico address upd"
+    }
+
+  })
+}
+```
+
+<br/>
+
+```
+{
+    restaurants {
+        id,
+      name,
+      isVegan
+      address
+    }
+}
+```
+
+<br/>
+
 <br/><br/>
 
 ---
