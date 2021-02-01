@@ -217,6 +217,17 @@ mutation {
 
 <br/>
 
+### 028. User Module Introduction
+
+<br/>
+
+### 029. User Model
+
+    $ nest generate module users
+    $ nest generate module common
+
+<br/>
+
 <br/><br/>
 
 ---
