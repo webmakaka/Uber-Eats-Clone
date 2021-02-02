@@ -5,11 +5,11 @@ import {
 } from 'users/dtos/create-account.dto';
 import { LoginInput, LoginOutput } from 'users/dtos/login.dto';
 import { User } from 'users/entities/user.entity';
-import { UsersService } from 'users/users.service';
+import { UserService } from 'users/users.service';
 
 @Resolver((of) => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly UserService: UserService) {}
 
   @Query((returns) => Boolean)
   hi() {
@@ -21,7 +21,7 @@ export class UsersResolver {
     @Args('input') createAccountInput: CreateAccountInput,
   ): Promise<CreateAccountOutput> {
     try {
-      return this.usersService.createAccount(createAccountInput);
+      return this.UserService.createAccount(createAccountInput);
     } catch (error) {
       return {
         ok: false,
@@ -33,7 +33,7 @@ export class UsersResolver {
   @Mutation((returns) => LoginOutput)
   async login(@Args('input') loginInput: LoginInput): Promise<LoginOutput> {
     try {
-      return this.usersService.login(loginInput);
+      return this.UserService.login(loginInput);
     } catch (error) {
       return {
         ok: false,

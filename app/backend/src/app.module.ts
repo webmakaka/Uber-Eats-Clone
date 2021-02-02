@@ -1,11 +1,12 @@
-import {Module} from '@nestjs/common';
-import {ConfigModule} from '@nestjs/config';
-import {GraphQLModule} from '@nestjs/graphql';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Joi from 'joi';
-import {User} from 'users/entities/user.entity';
-import {CommonModule} from './common/common.module';
-import {UsersModule} from './users/users.module';
+import { User } from 'users/entities/user.entity';
+import { CommonModule } from './common/common.module';
+import { JwtModule } from './jwt/jwt.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import {UsersModule} from './users/users.module';
         DATABASE_PORT: Joi.string().required(),
         DATABASE_USER: Joi.string().required(),
         DATABASE_PASSWORD: Joi.string().required(),
-        SECRET_KEY: Joi.string().required(),
+        PRIVATE_KEY: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot({
@@ -37,6 +38,9 @@ import {UsersModule} from './users/users.module';
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
+    }),
+    JwtModule.forRoot({
+      privateKey: process.env.PRIVATE_KEY,
     }),
     UsersModule,
     CommonModule,

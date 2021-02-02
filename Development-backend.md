@@ -321,6 +321,20 @@ https://randomkeygen.com/
 
 <br/>
 
+### 040. JWT and Modules
+
+https://jwt.io/
+
+    $ nest generate module jtw
+
+<br/>
+
+### 041-043. JWT Module
+
+    $ nest generate service jwt
+
+<br/>
+
 <br/><br/>
 
 ---
