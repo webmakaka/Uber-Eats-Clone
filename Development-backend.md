@@ -306,6 +306,21 @@ mutation {
 
 <br/>
 
+### 038. Introduction to Authentication
+
+<br/>
+
+### 039. Generating JWT
+
+    $ npm install jsonwebtoken
+    $ npm install --save-dev @types/jsonwebtoken
+
+<br/>
+
+https://randomkeygen.com/
+
+<br/>
+
 <br/><br/>
 
 ---
