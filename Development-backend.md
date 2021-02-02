@@ -275,6 +275,37 @@ mutation {
 
 <br/>
 
+### 036-037. Log In
+
+```
+mutation {
+  login(input: {
+    email: "myemail@gmail.com",
+    password: "pass1234"
+  }){
+    ok
+    error
+    token
+  }
+}
+```
+
+<br/>
+
+```
+{
+  "data": {
+    "login": {
+      "ok": true,
+      "error": null,
+      "token": "llllllllllllll"
+    }
+  }
+}
+```
+
+<br/>
+
 <br/><br/>
 
 ---
