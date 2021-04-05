@@ -7,6 +7,10 @@ import {
   CreateAccountOutput,
 } from 'users/dtos/create-account.dto';
 import { LoginInput, LoginOutput } from 'users/dtos/login.dto';
+import {
+  UserProfileInput,
+  UserProfileOutput,
+} from 'users/dtos/user-profile.dto';
 import { User } from 'users/entities/user.entity';
 import { UserService } from 'users/users.service';
 
@@ -21,7 +25,7 @@ export class UsersResolver {
 
   @Mutation((returns) => CreateAccountOutput)
   async createAccount(
-    @Args('input') createAccountInput: CreateAccountInput,
+    @Args('input') createAccountInput: CreateAccountInput
   ): Promise<CreateAccountOutput> {
     try {
       return this.UserService.createAccount(createAccountInput);
@@ -49,5 +53,28 @@ export class UsersResolver {
   @UseGuards(AuthGuard)
   me(@AuthUser() authUser: User) {
     return authUser;
+  }
+
+  @UseGuards(AuthGuard)
+  @Query((returns) => UserProfileOutput)
+  async userProfile(
+    @Args() userProfileInput: UserProfileInput
+  ): Promise<UserProfileOutput> {
+    try {
+      const user = await this.UserService.findById(userProfileInput.userId);
+
+      if (!user) {
+        throw Error();
+      }
+      return {
+        ok: true,
+        user,
+      };
+    } catch (e) {
+      return {
+        error: 'User Not Found',
+        ok: false,
+      };
+    }
   }
 }

@@ -402,6 +402,43 @@ https://jwt.io/
 
 <br/>
 
+### 049. Recap
+
+<br/>
+
+### 050. userProfile Mutation
+
+```
+{
+  userProfile(userId:1) {
+    ok,
+    error,
+    user {
+      id
+    }
+
+  }
+}
+```
+
+**returns**
+
+```
+{
+  "data": {
+    "userProfile": {
+      "ok": true,
+      "error": null,
+      "user": {
+        "id": 1
+      }
+    }
+  }
+}
+```
+
+<br/>
+
 <br/><br/>
 
 ---
