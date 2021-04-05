@@ -278,6 +278,7 @@ mutation {
 ### 036-037. Log In
 
 ```
+// LOGIN
 mutation {
   login(input: {
     email: "myemail@gmail.com",
@@ -332,6 +333,41 @@ https://jwt.io/
 ### 041-043. JWT Module
 
     $ nest generate service jwt
+
+<br/>
+
+### 044. Middlewares in NestJS
+
+<br/>
+
+### 045. JWT Middleware
+
+<br/>
+
+### 046. GraphQL Context
+
+```
+// LOGIN
+```
+
+<br/>
+
+```
+{
+  me {
+    email
+  }
+}
+```
+
+<br/>
+
+```
+// HTTP Headers
+{
+  "x-jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE3NjMxMTQyfQ.ggR22bX-sBM-hAOv5gcYylEL6-fvAfd7VIYgJVu1y5I"
+}
+```
 
 <br/>
 

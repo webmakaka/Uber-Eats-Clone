@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { JwtService } from 'jwt/jwt.service';
-import { Repository } from 'typeorm';
-import { CreateAccountInput } from 'users/dtos/create-account.dto';
-import { LoginInput } from 'users/dtos/login.dto';
-import { User } from 'users/entities/user.entity';
+import {Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {JwtService} from 'jwt/jwt.service';
+import {Repository} from 'typeorm';
+import {CreateAccountInput} from 'users/dtos/create-account.dto';
+import {LoginInput} from 'users/dtos/login.dto';
+import {User} from 'users/entities/user.entity';
 
 @Injectable()
 export class UserService {
@@ -68,5 +68,9 @@ export class UserService {
         error,
       };
     }
+  }
+
+  async findById(id: number): Promise<User> {
+    return this.users.findOne({ id });
   }
 }
