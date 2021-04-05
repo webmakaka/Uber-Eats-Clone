@@ -371,6 +371,12 @@ https://jwt.io/
 
 <br/>
 
+### 047. AuthGuard
+
+    $ nest generate module auth
+
+<br/>
+
 <br/><br/>
 
 ---
