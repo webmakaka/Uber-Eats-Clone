@@ -353,6 +353,7 @@ https://jwt.io/
 <br/>
 
 ```
+// ME
 {
   me {
     email
@@ -374,6 +375,30 @@ https://jwt.io/
 ### 047. AuthGuard
 
     $ nest generate module auth
+
+<br/>
+
+### 048. AuthUser Decorator
+
+<br/>
+
+```
+// ME
+```
+
+<br/>
+
+**returns**
+
+```
+{
+  "data": {
+    "me": {
+      "email": "myemail@gmail.com"
+    }
+  }
+}
+```
 
 <br/>
 
