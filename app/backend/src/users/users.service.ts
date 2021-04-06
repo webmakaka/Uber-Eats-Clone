@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { JwtService } from 'jwt/jwt.service';
-import { Repository } from 'typeorm';
-import { CreateAccountInput } from 'users/dtos/create-account.dto';
-import { EditProfileInput } from 'users/dtos/edit-profile.dto';
-import { LoginInput } from 'users/dtos/login.dto';
-import { User } from 'users/entities/user.entity';
-import { Verification } from 'users/entities/verification.entity';
+import {Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {JwtService} from 'jwt/jwt.service';
+import {Repository} from 'typeorm';
+import {CreateAccountInput} from 'users/dtos/create-account.dto';
+import {EditProfileInput} from 'users/dtos/edit-profile.dto';
+import {LoginInput} from 'users/dtos/login.dto';
+import {UserProfileOutput} from 'users/dtos/user-profile.dto';
+import {VerifyEmailOutput} from 'users/dtos/verify-email.dto';
+import {User} from 'users/entities/user.entity';
+import {Verification} from 'users/entities/verification.entity';
 
 @Injectable()
 export class UsersService {
@@ -86,8 +88,18 @@ export class UsersService {
     }
   }
 
-  async findById(id: number): Promise<User> {
-    return this.users.findOne({ id });
+  async findById(id: number): Promise<UserProfileOutput> {
+    try {
+      const user = await this.users.findOne({ id });
+      if (user) {
+        return {
+          ok: true,
+          user,
+        };
+      }
+    } catch (error) {
+      return { ok: false, error: 'User Not Found' };
+    }
   }
 
   async editProfile(
@@ -111,7 +123,7 @@ export class UsersService {
     return this.users.save(user);
   }
 
-  async verifyEmail(code: string): Promise<boolean> {
+  async verifyEmail(code: string): Promise<VerifyEmailOutput> {
     try {
       const verification = await this.verifications.findOne(
         { code },
@@ -121,11 +133,11 @@ export class UsersService {
         verification.user.verified = true;
         this.users.save(verification.user);
 
-        return true;
+        return { ok: true };
       }
-      throw new Error();
-    } catch (err) {
-      return false;
+      return { ok: false, error: 'Vefification not found.' };
+    } catch (error) {
+      return { ok: false, error };
     }
   }
 }
