@@ -408,7 +408,6 @@ https://jwt.io/
 
 ### 050. userProfile Mutation
 
-
 ```
 {
   userProfile(userId:1) {
@@ -444,7 +443,6 @@ https://jwt.io/
 
 ### 051-053. updateProfile
 
-
 ```
 // UPDATE PASSWORD
 mutation{
@@ -471,6 +469,10 @@ mutation {
   }
 }
 ```
+
+<br/>
+
+### 054. Verification Entity
 
 <br/>
 
