@@ -235,6 +235,7 @@ mutation {
 ### 031-033. Create Account Mutation
 
 ```
+// CREATE ACCOUNT
 mutation {
   createAccount(input: {
     email: "myemail@gmail.com",
@@ -472,7 +473,17 @@ mutation {
 
 <br/>
 
-### 054. Verification Entity
+### 054. Recap
+
+<br/>
+
+### 055. Verification Entity
+
+<br/>
+
+### 056. Creating Verifications
+
+    $ npm install uuid @types/uuid
 
 <br/>
 

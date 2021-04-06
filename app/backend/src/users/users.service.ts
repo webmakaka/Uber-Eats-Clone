@@ -1,16 +1,19 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {JwtService} from 'jwt/jwt.service';
-import {Repository} from 'typeorm';
-import {CreateAccountInput} from 'users/dtos/create-account.dto';
-import {EditProfileInput} from 'users/dtos/edit-profile.dto';
-import {LoginInput} from 'users/dtos/login.dto';
-import {User} from 'users/entities/user.entity';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from 'jwt/jwt.service';
+import { Repository } from 'typeorm';
+import { CreateAccountInput } from 'users/dtos/create-account.dto';
+import { EditProfileInput } from 'users/dtos/edit-profile.dto';
+import { LoginInput } from 'users/dtos/login.dto';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
+    @InjectRepository(Verification)
+    private readonly verifications: Repository<Verification>,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -28,7 +31,16 @@ export class UsersService {
           error: '[App] There is a user with that email already!',
         };
       }
-      await this.users.save(this.users.create({ email, password, role }));
+      const user = await this.users.save(
+        this.users.create({ email, password, role }),
+      );
+
+      await this.verifications.save(
+        this.verifications.create({
+          user,
+        }),
+      );
+
       return { ok: true };
     } catch (err) {
       return { ok: false, error: "[App] Couldn't create account" };
@@ -80,8 +92,14 @@ export class UsersService {
     { email, password }: EditProfileInput,
   ): Promise<User> {
     const user = await this.users.findOne(userId);
-    if (user) {
+    if (email) {
       user.email = email;
+      user.verified = false;
+      await this.verifications.save(
+        this.verifications.create({
+          user,
+        }),
+      );
     }
     if (password) {
       user.password = password;
