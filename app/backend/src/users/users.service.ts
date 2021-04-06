@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { JwtService } from 'jwt/jwt.service';
-import { Repository } from 'typeorm';
-import { CreateAccountInput } from 'users/dtos/create-account.dto';
-import { LoginInput } from 'users/dtos/login.dto';
-import { User } from 'users/entities/user.entity';
+import {Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {JwtService} from 'jwt/jwt.service';
+import {Repository} from 'typeorm';
+import {CreateAccountInput} from 'users/dtos/create-account.dto';
+import {EditProfileInput} from 'users/dtos/edit-profile.dto';
+import {LoginInput} from 'users/dtos/login.dto';
+import {User} from 'users/entities/user.entity';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
     private readonly jwtService: JwtService,
@@ -72,5 +73,20 @@ export class UserService {
 
   async findById(id: number): Promise<User> {
     return this.users.findOne({ id });
+  }
+
+  async editProfile(
+    userId: number,
+    { email, password }: EditProfileInput,
+  ): Promise<User> {
+    const user = await this.users.findOne(userId);
+    if (user) {
+      user.email = email;
+    }
+    if (password) {
+      user.password = password;
+    }
+
+    return this.users.save(user);
   }
 }

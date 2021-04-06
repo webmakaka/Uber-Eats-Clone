@@ -1,5 +1,5 @@
 import { ArgsType, Field, ObjectType } from '@nestjs/graphql';
-import { MutationOutput } from 'common/dtos/output.dto';
+import { CoreOutput } from 'common/dtos/output.dto';
 import { User } from 'users/entities/user.entity';
 
 @ArgsType()
@@ -9,7 +9,7 @@ export class UserProfileInput {
 }
 
 @ObjectType()
-export class UserProfileOutput extends MutationOutput {
+export class UserProfileOutput extends CoreOutput {
   @Field((type) => User, { nullable: true })
   user?: User;
 }

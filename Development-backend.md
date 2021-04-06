@@ -408,6 +408,7 @@ https://jwt.io/
 
 ### 050. userProfile Mutation
 
+
 ```
 {
   userProfile(userId:1) {
@@ -421,6 +422,8 @@ https://jwt.io/
 }
 ```
 
+<br/>
+
 **returns**
 
 ```
@@ -433,6 +436,38 @@ https://jwt.io/
         "id": 1
       }
     }
+  }
+}
+```
+
+<br/>
+
+### 051-053. updateProfile
+
+
+```
+// UPDATE PASSWORD
+mutation{
+  editProfile(input: {
+    password:"123"
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+mutation {
+  login(input: {
+    email: "myemail@gmail.com",
+    password: "123"
+  }){
+    ok
+    error
+    token
   }
 }
 ```
