@@ -519,6 +519,13 @@ MAILGUN_FROM_EMAIL=
 
 <br/>
 
+### 062. Mailgun API
+
+    $ npm install got
+    $ npm install form-data
+
+<br/>
+
 <br/><br/>
 
 ---

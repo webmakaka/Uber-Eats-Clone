@@ -1,10 +1,11 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { CONFIG_OPTIONS } from 'common/common.constants';
-import { IMainModuleOptions } from 'mail/mail.interfaces';
+import { IMailModuleOptions } from 'mail/mail.interfaces';
+import { MailService } from 'mail/mail.service';
 
 @Module({})
 export class MailModule {
-  static forRoot(options: IMainModuleOptions): DynamicModule {
+  static forRoot(options: IMailModuleOptions): DynamicModule {
     return {
       module: MailModule,
       providers: [
@@ -12,8 +13,9 @@ export class MailModule {
           provide: CONFIG_OPTIONS,
           useValue: options,
         },
+        MailService,
       ],
-      exports: [],
+      exports: [MailService],
     };
   }
 }
