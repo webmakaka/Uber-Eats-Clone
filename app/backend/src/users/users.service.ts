@@ -1,14 +1,14 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {JwtService} from 'jwt/jwt.service';
-import {Repository} from 'typeorm';
-import {CreateAccountInput} from 'users/dtos/create-account.dto';
-import {EditProfileInput} from 'users/dtos/edit-profile.dto';
-import {LoginInput} from 'users/dtos/login.dto';
-import {UserProfileOutput} from 'users/dtos/user-profile.dto';
-import {VerifyEmailOutput} from 'users/dtos/verify-email.dto';
-import {User} from 'users/entities/user.entity';
-import {Verification} from 'users/entities/verification.entity';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from 'jwt/jwt.service';
+import { Repository } from 'typeorm';
+import { CreateAccountInput } from 'users/dtos/create-account.dto';
+import { EditProfileInput } from 'users/dtos/edit-profile.dto';
+import { LoginInput } from 'users/dtos/login.dto';
+import { UserProfileOutput } from 'users/dtos/user-profile.dto';
+import { VerifyEmailOutput } from 'users/dtos/verify-email.dto';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
 
 @Injectable()
 export class UsersService {
@@ -131,8 +131,8 @@ export class UsersService {
       );
       if (verification) {
         verification.user.verified = true;
-        this.users.save(verification.user);
-
+        await this.users.save(verification.user);
+        await this.verifications.delete(verification.id);
         return { ok: true };
       }
       return { ok: false, error: 'Vefification not found.' };

@@ -495,6 +495,30 @@ mutation {
 
 <br/>
 
+### 060. Mailgun Setup
+
+Domain -> Sandbox###### -> Authorized Recipients
+
+Add your email address
+
+<br/>
+
+### 061. Mail Module Setup
+
+    $ nest genete module mail
+
+<br/>
+
+**Specify in .dev.env:**
+
+```
+MAILGUN_API_KEY=
+MAILGUN_DOMAIN_NAME=
+MAILGUN_FROM_EMAIL=
+```
+
+<br/>
+
 <br/><br/>
 
 ---
