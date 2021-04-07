@@ -30,7 +30,7 @@
     "@types/uuid": "^8.3.0",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.0.0",
-    "class-transformer": "^0.3.2",
+    "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
     "form-data": "^2.3.3",
