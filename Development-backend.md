@@ -526,6 +526,21 @@ MAILGUN_FROM_EMAIL=
 
 <br/>
 
+### 063. Beautiful Emails
+
+MailGun -> Templates -> Create -> Alert
+
+```
+Name: verify-email
+Description: description
+```
+
+<br/>
+
+![Application](/img/pic-part01-les063-pic01.png?raw=true)
+
+<br/>
+
 <br/><br/>
 
 ---
