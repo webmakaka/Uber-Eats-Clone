@@ -545,6 +545,16 @@ Description: description
 
 <br/>
 
+### 065. Setting Up Tests
+
+    $ npm run test:watch
+
+<br/>
+
+### 066. Mocking
+
+<br/>
+
 <br/><br/>
 
 ---

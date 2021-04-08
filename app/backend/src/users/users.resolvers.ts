@@ -20,11 +20,11 @@ import {
   VerifyEmailOutput,
 } from 'users/dtos/verify-email.dto';
 import { User } from 'users/entities/user.entity';
-import { UsersService } from 'users/users.service';
+import { UserService } from 'users/users.service';
 
 @Resolver((of) => User)
 export class UsersResolver {
-  constructor(private readonly UsersService: UsersService) {}
+  constructor(private readonly UserService: UserService) {}
 
   @Query((returns) => Boolean)
   hi() {
@@ -35,13 +35,13 @@ export class UsersResolver {
   async createAccount(
     @Args('input') createAccountInput: CreateAccountInput,
   ): Promise<CreateAccountOutput> {
-    return this.UsersService.createAccount(createAccountInput);
+    return this.UserService.createAccount(createAccountInput);
   }
 
   @Mutation((returns) => LoginOutput)
   async login(@Args('input') loginInput: LoginInput): Promise<LoginOutput> {
     try {
-      return this.UsersService.login(loginInput);
+      return this.UserService.login(loginInput);
     } catch (error) {
       return {
         ok: false,
@@ -61,7 +61,7 @@ export class UsersResolver {
   async userProfile(
     @Args() userProfileInput: UserProfileInput,
   ): Promise<UserProfileOutput> {
-    return this.UsersService.findById(userProfileInput.userId);
+    return this.UserService.findById(userProfileInput.userId);
   }
 
   @UseGuards(AuthGuard)
@@ -71,7 +71,7 @@ export class UsersResolver {
     @Args('input') editProfileInput: EditProfileInput,
   ): Promise<EditProfileOutput> {
     try {
-      await this.UsersService.editProfile(authUser.id, editProfileInput);
+      await this.UserService.editProfile(authUser.id, editProfileInput);
       return {
         ok: true,
       };
@@ -87,6 +87,6 @@ export class UsersResolver {
   verifyEmail(
     @Args('input') { code }: VerifyEmailInput,
   ): Promise<VerifyEmailOutput> {
-    return this.UsersService.verifyEmail(code);
+    return this.UserService.verifyEmail(code);
   }
 }
