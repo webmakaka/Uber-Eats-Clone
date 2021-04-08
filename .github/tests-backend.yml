@@ -1,0 +1,13 @@
+name: tests-backend
+
+on:
+  push:
+    paths:
+      - 'app/backend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd app/auth && npm install && npm run test
