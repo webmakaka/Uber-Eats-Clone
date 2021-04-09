@@ -583,6 +583,10 @@ Description: description
 
 <br/>
 
+### 077. verifyEmail Test
+
+<br/>
+
 ---
 
 <br/>
