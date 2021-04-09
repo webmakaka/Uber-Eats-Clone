@@ -4,7 +4,10 @@ import { JwtService } from 'jwt/jwt.service';
 import { MailService } from 'mail/mail.service';
 import { Repository } from 'typeorm';
 import { CreateAccountInput } from 'users/dtos/create-account.dto';
-import { EditProfileInput } from 'users/dtos/edit-profile.dto';
+import {
+  EditProfileInput,
+  EditProfileOutput,
+} from 'users/dtos/edit-profile.dto';
 import { LoginInput } from 'users/dtos/login.dto';
 import { UserProfileOutput } from 'users/dtos/user-profile.dto';
 import { VerifyEmailOutput } from 'users/dtos/verify-email.dto';
@@ -107,24 +110,31 @@ export class UserService {
   async editProfile(
     userId: number,
     { email, password }: EditProfileInput,
-  ): Promise<User> {
-    const user = await this.users.findOne(userId);
-    if (email) {
-      user.email = email;
-      user.verified = false;
-      const verification = await this.verifications.save(
-        this.verifications.create({
-          user,
-        }),
-      );
+  ): Promise<EditProfileOutput> {
+    try {
+      const user = await this.users.findOne(userId);
+      if (email) {
+        user.email = email;
+        user.verified = false;
+        const verification = await this.verifications.save(
+          this.verifications.create({
+            user,
+          }),
+        );
 
-      this.mailService.sendVerificationEmail(user.email, verification.code);
-    }
-    if (password) {
-      user.password = password;
-    }
+        this.mailService.sendVerificationEmail(user.email, verification.code);
+      }
+      if (password) {
+        user.password = password;
+      }
 
-    return this.users.save(user);
+      await this.users.save(user);
+      return {
+        ok: true,
+      };
+    } catch (error) {
+      return { ok: false, error: '[App] Could not update profile' };
+    }
   }
 
   async verifyEmail(code: string): Promise<VerifyEmailOutput> {
