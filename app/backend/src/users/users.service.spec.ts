@@ -1,16 +1,17 @@
-import {Test} from '@nestjs/testing';
-import {getRepositoryToken} from '@nestjs/typeorm';
-import {JwtService} from 'jwt/jwt.service';
-import {MailService} from 'mail/mail.service';
-import {Repository} from 'typeorm';
-import {User} from 'users/entities/user.entity';
-import {Verification} from 'users/entities/verification.entity';
-import {UserService} from 'users/users.service';
+import { Test } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { JwtService } from 'jwt/jwt.service';
+import { MailService } from 'mail/mail.service';
+import { Repository } from 'typeorm';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
+import { UserService } from 'users/users.service';
 
 const mockRepository = () => ({
   findOne: jest.fn(),
   save: jest.fn(),
   create: jest.fn(),
+  findOneOrFail: jest.fn(),
 });
 
 const mockJwtService = {
@@ -159,8 +160,6 @@ describe('UserService', () => {
       usersRepository.findOne.mockResolvedValue(mockedUser);
       const result = await service.login(loginArgs);
 
-      console.log(result);
-
       expect(result).toEqual({
         ok: false,
         error: '[App] Wrong password',
@@ -183,7 +182,29 @@ describe('UserService', () => {
     });
   });
 
-  it.todo('findById');
+  describe('findById', () => {
+    const findByIdArgs = {
+      id: 1,
+    };
+
+    it('should find an existing user', async () => {
+      usersRepository.findOneOrFail.mockResolvedValue(findByIdArgs);
+      const result = await service.findById(1);
+      expect(result).toEqual({
+        ok: true,
+        user: findByIdArgs,
+      });
+    });
+
+    it('should fail if no user is found', async () => {
+      usersRepository.findOneOrFail.mockRejectedValue(new Error());
+      const result = await service.findById(1);
+      expect(result).toEqual({
+        ok: false,
+        error: '[App] User Not Found',
+      });
+    });
+  });
   it.todo('editProfile');
   it.todo('vefifyEmail');
 });
