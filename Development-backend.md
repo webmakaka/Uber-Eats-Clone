@@ -613,6 +613,13 @@ Description: description
 
 ### 084-085. e2e Setup
 
+    $ docker-compose down
+    $ docker-compose up -d
+
+<br/>
+
+### 086-087. Testing createAccount
+
 <br/>
 
 ---
