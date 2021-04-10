@@ -603,6 +603,10 @@ Description: description
 
 <br/>
 
+### 082. sendVerificationEmail Test
+
+<br/>
+
 ---
 
 <br/>
