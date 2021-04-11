@@ -642,6 +642,10 @@ Description: description
 
 <br/>
 
+### 092. Testing verifyEmail
+
+<br/>
+
 ---
 
 <br/>
