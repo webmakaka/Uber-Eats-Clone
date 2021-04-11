@@ -618,7 +618,15 @@ Description: description
 
 <br/>
 
+    $ npm run test:e2e
+
+<br/>
+
 ### 086-087. Testing createAccount
+
+<br/>
+
+### 088. Testing login
 
 <br/>
 
