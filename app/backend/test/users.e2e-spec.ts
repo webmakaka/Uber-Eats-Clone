@@ -1,10 +1,10 @@
-import {INestApplication} from '@nestjs/common';
-import {Test, TestingModule} from '@nestjs/testing';
-import {getRepositoryToken} from '@nestjs/typeorm';
-import {AppModule} from 'app.module';
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { AppModule } from 'app.module';
 import * as request from 'supertest';
-import {getConnection, Repository} from 'typeorm';
-import {User} from 'users/entities/user.entity';
+import { getConnection, Repository } from 'typeorm';
+import { User } from 'users/entities/user.entity';
 
 jest.mock('got', () => {
   return {
@@ -273,6 +273,67 @@ describe('UserModule (e2e)', () => {
           expect(error.message).toBe('Forbidden resource');
         });
     });
+  });
+
+  describe('editProfile', () => {
+    const NEW_EMAIL = 'newemail@gmail.com';
+
+    it('should change email', () => {
+      return request(app.getHttpServer())
+        .post(GRAPHQL_ENDPOINT)
+        .set('X-JWT', jwtToken)
+        .send({
+          query: `
+            mutation {
+              editProfile(input: {
+                email: "${NEW_EMAIL}"
+              }){
+                ok
+                error
+              }
+            }
+         `,
+        })
+        .expect(200)
+        .expect((res) => {
+          const {
+            body: {
+              data: {
+                editProfile: { ok, error },
+              },
+            },
+          } = res;
+          expect(ok).toBe(true);
+          expect(error).toBe(null);
+        });
+    });
+
+    it('should have new email', async () => {
+      return request(app.getHttpServer())
+        .post(GRAPHQL_ENDPOINT)
+        .set('X-JWT', jwtToken)
+        .send({
+          query: `
+          {
+            me {
+              email
+            }
+          }
+         `,
+        })
+        .expect(200)
+        .expect((res) => {
+          const {
+            body: {
+              data: {
+                me: { email },
+              },
+            },
+          } = res;
+          expect(email).toBe(NEW_EMAIL);
+        });
+    });
+    //
   });
 
   //

@@ -1,18 +1,18 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {JwtService} from 'jwt/jwt.service';
-import {MailService} from 'mail/mail.service';
-import {Repository} from 'typeorm';
-import {CreateAccountInput} from 'users/dtos/create-account.dto';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from 'jwt/jwt.service';
+import { MailService } from 'mail/mail.service';
+import { Repository } from 'typeorm';
+import { CreateAccountInput } from 'users/dtos/create-account.dto';
 import {
   EditProfileInput,
-  EditProfileOutput
+  EditProfileOutput,
 } from 'users/dtos/edit-profile.dto';
-import {LoginInput} from 'users/dtos/login.dto';
-import {UserProfileOutput} from 'users/dtos/user-profile.dto';
-import {VerifyEmailOutput} from 'users/dtos/verify-email.dto';
-import {User} from 'users/entities/user.entity';
-import {Verification} from 'users/entities/verification.entity';
+import { LoginInput } from 'users/dtos/login.dto';
+import { UserProfileOutput } from 'users/dtos/user-profile.dto';
+import { VerifyEmailOutput } from 'users/dtos/verify-email.dto';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
 
 @Injectable()
 export class UserService {
@@ -116,6 +116,8 @@ export class UserService {
       if (email) {
         user.email = email;
         user.verified = false;
+
+        await this.verifications.delete({ user: { id: user.id } });
         const verification = await this.verifications.save(
           this.verifications.create({
             user,
