@@ -650,6 +650,10 @@ Description: description
 
 <br/>
 
+### 094. Restaurant Models
+
+<br/>
+
 ---
 
 <br/>
