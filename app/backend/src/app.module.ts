@@ -2,21 +2,22 @@ import {
   MiddlewareConsumer,
   Module,
   NestModule,
-  RequestMethod
+  RequestMethod,
 } from '@nestjs/common';
-import {ConfigModule} from '@nestjs/config';
-import {GraphQLModule} from '@nestjs/graphql';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from 'auth/auth.module';
 import * as Joi from 'joi';
-import {JwtMiddeware} from 'jwt/jwt.middleware';
-import {JwtModule} from 'jwt/jwt.module';
-import {Category} from 'restaurants/entities/category.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {RestaurantsModule} from 'restaurants/restaurants.module';
-import {User} from 'users/entities/user.entity';
-import {Verification} from 'users/entities/verification.entity';
-import {UsersModule} from 'users/users.module';
-import {MailModule} from './mail/mail.module';
+import { JwtMiddeware } from 'jwt/jwt.middleware';
+import { JwtModule } from 'jwt/jwt.module';
+import { Category } from 'restaurants/entities/category.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { RestaurantsModule } from 'restaurants/restaurants.module';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
+import { UsersModule } from 'users/users.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import {MailModule} from './mail/mail.module';
       domain: process.env.MAILGUN_DOMAIN_NAME,
       fromEmail: process.env.MAILGUN_FROM_EMAIL,
     }),
+    AuthModule,
     UsersModule,
     RestaurantsModule,
   ],

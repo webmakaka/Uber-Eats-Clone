@@ -11,13 +11,13 @@ import { CoreEntity } from 'common/entities/core.entity';
 import { Restaurant } from 'restaurants/entities/restaurant.entity';
 import {BeforeInsert, BeforeUpdate, Column, Entity, OneToMany} from 'typeorm';
 
-enum UserRole {
-  Client,
-  Owner,
-  Delivery,
+export enum EUserRole {
+  Client = 'Client',
+  Owner = 'Owner',
+  Delivery = 'Delivery',
 }
 
-registerEnumType(UserRole, { name: 'UserRole' });
+registerEnumType(EUserRole, { name: 'UserRole' });
 
 @InputType('UserInputType', { isAbstract: true })
 @ObjectType()
@@ -35,11 +35,11 @@ export class User extends CoreEntity {
 
   @Column({
     type: 'enum',
-    enum: UserRole,
+    enum: EUserRole,
   })
-  @Field((type) => UserRole)
-  @IsEnum(UserRole)
-  role: UserRole;
+  @Field((type) => EUserRole)
+  @IsEnum(EUserRole)
+  role: EUserRole;
 
   @Column({ default: false })
   @Field((type) => Boolean)
