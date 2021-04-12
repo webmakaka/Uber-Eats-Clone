@@ -658,6 +658,25 @@ Description: description
 
 <br/>
 
+### 096-097. createRestaurant
+
+```
+// CREATE RESTAURANT
+mutation {
+  createRestaurant(input: {
+    name: "BBQ House",
+    address: "123 Altavista",
+    coverImg: "https://",
+    categoryName: "Korean BBQ"
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>
