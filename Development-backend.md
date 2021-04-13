@@ -677,9 +677,13 @@ mutation {
 
 <br/>
 
-### 098-0100. Roles
+### 098-100. Roles
 
 Recreate containers with postrgresql db
+
+<br/>
+
+### 101-103. Edit Restaurant
 
 <br/>
 
