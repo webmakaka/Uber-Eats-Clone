@@ -1,18 +1,18 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput
+  CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput
+  EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
-import {Category} from 'restaurants/entities/category.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {CategoryRepository} from 'restaurants/repositories/category.repository';
-import {Repository} from 'typeorm';
-import {User} from 'users/entities/user.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { CategoryRepository } from 'restaurants/repositories/category.repository';
+import { Repository } from 'typeorm';
+import { User } from 'users/entities/user.entity';
 
 @Injectable()
 export class RestaurantService {
@@ -21,21 +21,6 @@ export class RestaurantService {
     private readonly restaurants: Repository<Restaurant>,
     private readonly categories: CategoryRepository,
   ) {}
-
-  async getOrCreate(name: string): Promise<Category> {
-    const categoryName = name.trim().toLowerCase();
-    const categorySlug = categoryName.replace(/ /g, '-');
-    let category = await this.categories.findOne({ slug: categorySlug });
-    if (!category) {
-      category = await this.categories.save(
-        this.categories.create({
-          slug: categorySlug,
-          name: categoryName,
-        }),
-      );
-    }
-    return category;
-  }
 
   async createRestaurant(
     owner: User,

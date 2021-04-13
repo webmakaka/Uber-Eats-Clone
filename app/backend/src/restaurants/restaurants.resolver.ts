@@ -1,17 +1,17 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { AuthUser } from 'auth/auth-user.decorator';
-import { Role } from 'auth/role.decorator';
+import {Args, Mutation, Resolver} from '@nestjs/graphql';
+import {AuthUser} from 'auth/auth-user.decorator';
+import {Role} from 'auth/role.decorator';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput,
+  CreateRestaurantOutput
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput,
+  EditRestaurantOutput
 } from 'restaurants/dtos/edit.restaurant.dto';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { RestaurantService } from 'restaurants/restaurants.service';
-import { EUserRole, User } from 'users/entities/user.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {RestaurantService} from 'restaurants/restaurants.service';
+import {EUserRole, User} from 'users/entities/user.entity';
 
 @Resolver((of) => Restaurant)
 export class RestaurantResolver {
@@ -32,11 +32,9 @@ export class RestaurantResolver {
   @Mutation((returns) => EditRestaurantOutput)
   @Role([EUserRole.Owner])
   editRestaurant(
-    @AuthUser() authUser: User,
+    @AuthUser() owner: User,
     @Args('input') editRestaurantInput: EditRestaurantInput,
-  ): EditRestaurantOutput {
-    return {
-      ok: true,
-    };
+  ): Promise<EditRestaurantOutput> {
+    return this.restaurantService.editRestaurant(owner, editRestaurantInput);
   }
 }
