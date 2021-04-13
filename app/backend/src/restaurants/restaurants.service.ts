@@ -5,6 +5,10 @@ import {
   CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
+  DeleteRestaurantInput,
+  DeleteRestaurantOutput,
+} from 'restaurants/dtos/delete-restaurant.dto';
+import {
   EditRestaurantInput,
   EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
@@ -88,6 +92,35 @@ export class RestaurantService {
       return {
         ok: false,
         error: '[App] Could not edit Restaurant',
+      };
+    }
+  }
+
+  async deleteRestaurant(
+    owner: User,
+    { restaurantId }: DeleteRestaurantInput,
+  ): Promise<DeleteRestaurantOutput> {
+    try {
+      const restaurant = await this.restaurants.findOneOrFail(restaurantId);
+      if (!restaurant) {
+        return {
+          ok: false,
+          error: '[App] Restaurant not found',
+        };
+      }
+
+      if (owner.id !== restaurant.ownerId) {
+        return {
+          ok: false,
+          error: "[App] You can't delete a restaurant that you don't own",
+        };
+      }
+
+      await this.restaurants.delete(restaurantId);
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not delete restaurant',
       };
     }
   }

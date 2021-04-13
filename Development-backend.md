@@ -105,12 +105,17 @@ https://docs.nestjs.com/techniques/database
 Run pgadmin in docker container:
 
 ```
-$ docker run -e PGADMIN_DEFAULT_EMAIL='username' -e PGADMIN_DEFAULT_PASSWORD='password' -p 5555:80 --name pgadmin dpage/pgadmin4
+$ docker run -e PGADMIN_DEFAULT_EMAIL='postgres@test.com' -e PGADMIN_DEFAULT_PASSWORD='password1234' -p 5555:80 --name pgadmin dpage/pgadmin4
 ```
 
 <br/>
 
 http://localhost:5555/
+
+```
+login: postgres@test.com
+pass: password1234
+```
 
 <br/>
 
@@ -688,6 +693,79 @@ Recreate containers with postrgresql db
 <br/>
 
 ### 104. Edit Restaurant Testing
+
+<br/>
+
+### 105. Delete Restaurant
+
+```
+// CREATE ACCOUNT OWNER
+mutation {
+  createAccount(input: {
+    email: "owner@gmail.com",
+    password: "pass1234"
+    role:Owner
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+// LOGIN
+mutation {
+  login(input: {
+    email: "owner@gmail.com",
+    password: "pass1234"
+  }){
+    ok
+    error
+    token
+  }
+}
+```
+
+<br/>
+
+```
+// CREATE RESTAURANT
+mutation {
+  createRestaurant(input: {
+    name: "OWNER Restaurant",
+    address: "OWNER Address",
+    coverImg: "https://",
+    categoryName: "OWNER Category"
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+// HEADERS
+```
+
+<br/>
+
+```
+// DELETE RESTAURANT
+mutation {
+  deleteRestaurant(input: {
+    restaurantId: 6,
+  }){
+    ok
+    error
+  }
+}
+```
+
+**Removes but with error!**
 
 <br/>
 
