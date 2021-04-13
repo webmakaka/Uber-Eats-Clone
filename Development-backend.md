@@ -166,6 +166,7 @@ http://localhost:3000/graphql
 <br/>
 
 ```
+// CREATE RESTAURANT
 mutation {
   createRestaurant(input: {
     name: "Nico N",
@@ -766,6 +767,24 @@ mutation {
 ```
 
 **Removes but with error!**
+
+<br/>
+
+### 106-107. Categories
+
+```
+// ALL CATEGORIES
+{
+  allCategories {
+    ok
+    error
+    categories {
+      slug
+      name
+    }
+  }
+}
+```
 
 <br/>
 
