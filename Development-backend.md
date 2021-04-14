@@ -853,6 +853,31 @@ returns:
 
 <br/>
 
+### 109. Pagination
+
+```
+{
+  category(input: {
+    slug: "owner-restaurant",
+    page: 1
+  }) {
+    ok
+    error
+    category {
+      id
+      name
+      restaurantCount
+      restaurants {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>

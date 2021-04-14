@@ -5,28 +5,28 @@ import {
   Parent,
   Query,
   ResolveField,
-  Resolver
+  Resolver,
 } from '@nestjs/graphql';
-import {AuthUser} from 'auth/auth-user.decorator';
-import {Role} from 'auth/role.decorator';
-import {AllCategoriesOutput} from 'restaurants/dtos/all-categories.dto';
-import {CategoryInput, CategoryOutput} from 'restaurants/dtos/category.dto';
+import { AuthUser } from 'auth/auth-user.decorator';
+import { Role } from 'auth/role.decorator';
+import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
+import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput
+  CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput
+  DeleteRestaurantOutput,
 } from 'restaurants/dtos/delete-restaurant.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput
+  EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
-import {Category} from 'restaurants/entities/category.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {RestaurantService} from 'restaurants/restaurants.service';
-import {EUserRole, User} from 'users/entities/user.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { RestaurantService } from 'restaurants/restaurants.service';
+import { EUserRole, User } from 'users/entities/user.entity';
 
 @Resolver((of) => Restaurant)
 export class RestaurantResolver {
@@ -81,7 +81,9 @@ export class CategoryResolver {
   }
 
   @Query((type) => CategoryOutput)
-  category(@Args() categoryInput: CategoryInput): Promise<CategoryOutput> {
+  category(
+    @Args('input') categoryInput: CategoryInput,
+  ): Promise<CategoryOutput> {
     return this.restaurantService.findCategoryBySlug(categoryInput);
   }
 }
