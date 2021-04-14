@@ -878,6 +878,54 @@ returns:
 
 <br/>
 
+### 110. Restaurants
+
+```
+{
+  restaurants (input: {}){
+    error
+    ok
+    totalPages
+    totalResults
+    results {
+      name
+      id
+    }
+  }
+}
+```
+
+<br/>
+
+```
+{
+  "data": {
+    "restaurants": {
+      "error": null,
+      "ok": true,
+      "totalPages": 1,
+      "totalResults": 3,
+      "results": [
+        {
+          "name": "BBQ House",
+          "id": 8
+        },
+        {
+          "name": "BBQ House",
+          "id": 9
+        },
+        {
+          "name": "OWNER Restaurant",
+          "id": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>
