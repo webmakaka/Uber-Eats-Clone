@@ -766,8 +766,6 @@ mutation {
 }
 ```
 
-**Removes but with error!**
-
 <br/>
 
 ### 106-107. Categories
@@ -781,6 +779,73 @@ mutation {
     categories {
       slug
       name
+    }
+  }
+}
+```
+
+returns:
+
+```json
+{
+  "data": {
+    "allCategories": {
+      "ok": true,
+      "error": null,
+      "categories": [
+        {
+          "slug": "owner-restaurant",
+          "name": "owner restaurant"
+        }
+      ]
+    }
+  }
+}
+```
+
+<br/>
+
+### 108. Category
+
+```
+{
+  category(slug: "owner-restaurant") {
+    ok
+    error
+    category {
+      id
+      name
+      slug
+      restaurantCount
+      restaurants {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+**returns:**
+
+```json
+{
+  "data": {
+    "category": {
+      "ok": true,
+      "error": null,
+      "category": {
+        "id": 1,
+        "name": "owner restaurant",
+        "slug": "owner-restaurant",
+        "restaurantCount": 1,
+        "restaurants": [
+          {
+            "id": 7,
+            "name": "OWNER Restaurant"
+          }
+        ]
+      }
     }
   }
 }
