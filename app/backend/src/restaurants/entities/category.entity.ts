@@ -1,8 +1,8 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { IsString, Length } from 'class-validator';
-import { CoreEntity } from 'common/entities/core.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import {Field, InputType, ObjectType} from '@nestjs/graphql';
+import {IsString, Length} from 'class-validator';
+import {CoreEntity} from 'common/entities/core.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {Column, Entity, OneToMany} from 'typeorm';
 
 @InputType('CategoryInputType', { isAbstract: true })
 @ObjectType()
@@ -24,7 +24,7 @@ export class Category extends CoreEntity {
   @IsString()
   slug: string;
 
-  @Field((type) => [Restaurant])
+  @Field((type) => [Restaurant], { nullable: true })
   @OneToMany((type) => Restaurant, (restaurant) => restaurant.category)
   restaurants: Restaurant[];
 }
