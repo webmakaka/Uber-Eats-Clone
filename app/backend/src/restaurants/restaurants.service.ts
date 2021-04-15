@@ -15,13 +15,21 @@ import {
   EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
+  RestaurantInput,
+  RestaurantOutput,
+} from 'restaurants/dtos/restaurant.dto';
+import {
   RestaurantsInput,
   RestaurantsOutput,
 } from 'restaurants/dtos/restaurants.dto';
+import {
+  SearchRestaurantInput,
+  SearchRestaurantOutput,
+} from 'restaurants/dtos/search-restaurant.dto';
 import { Category } from 'restaurants/entities/category.entity';
 import { Restaurant } from 'restaurants/entities/restaurant.entity';
 import { CategoryRepository } from 'restaurants/repositories/category.repository';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { User } from 'users/entities/user.entity';
 
 @Injectable()
@@ -209,6 +217,56 @@ export class RestaurantService {
       return {
         ok: false,
         error: '[App] Could not load restaurants',
+      };
+    }
+  }
+
+  async findRestaurantById({
+    restaurantId,
+  }: RestaurantInput): Promise<RestaurantOutput> {
+    try {
+      const restaurant = await this.restaurants.findOne(restaurantId);
+
+      if (!restaurant) {
+        return {
+          ok: false,
+          error: '[App] Restaurant not found',
+        };
+      }
+      return {
+        ok: true,
+        restaurant,
+      };
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not find restaurant',
+      };
+    }
+  }
+
+  async searchRestaurantByName({
+    query,
+    page,
+  }: SearchRestaurantInput): Promise<SearchRestaurantOutput> {
+    try {
+      const [restaurants, totalResults] = await this.restaurants.findAndCount({
+        where: {
+          name: ILike(`%${query}%`),
+        },
+        skip: (page - 1) * 25,
+        take: 25,
+      });
+      return {
+        ok: true,
+        restaurants,
+        totalResults,
+        totalPages: Math.ceil(totalResults / 25),
+      };
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not search for restaurants',
       };
     }
   }

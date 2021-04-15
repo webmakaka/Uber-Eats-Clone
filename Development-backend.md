@@ -897,6 +897,8 @@ returns:
 
 <br/>
 
+**returns:**
+
 ```
 {
   "data": {
@@ -917,6 +919,81 @@ returns:
         {
           "name": "OWNER Restaurant",
           "id": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+<br/>
+
+### 111-112. Restaurant and Search
+
+```
+{
+  restaurant (input: {restaurantId: 9}){
+    error
+    ok
+    restaurant {
+      id
+      name
+    }
+  }
+}
+```
+
+**returns**
+
+```json
+{
+  "data": {
+    "restaurant": {
+      "error": null,
+      "ok": true,
+      "restaurant": {
+        "id": 9,
+        "name": "BBQ House"
+      }
+    }
+  }
+}
+```
+
+<br/>
+
+```
+{
+  searchRestaurant (input: {query: "BBQ"}){
+    error
+    ok
+    totalPages
+    totalResults
+    restaurants {
+      name
+    }
+  }
+}
+```
+
+<br/>
+
+**returns**
+
+```json
+{
+  "data": {
+    "searchRestaurant": {
+      "error": null,
+      "ok": true,
+      "totalPages": 1,
+      "totalResults": 2,
+      "restaurants": [
+        {
+          "name": "BBQ House"
+        },
+        {
+          "name": "BBQ House"
         }
       ]
     }

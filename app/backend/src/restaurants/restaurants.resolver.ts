@@ -5,32 +5,40 @@ import {
   Parent,
   Query,
   ResolveField,
-  Resolver,
+  Resolver
 } from '@nestjs/graphql';
-import { AuthUser } from 'auth/auth-user.decorator';
-import { Role } from 'auth/role.decorator';
-import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
-import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
+import {AuthUser} from 'auth/auth-user.decorator';
+import {Role} from 'auth/role.decorator';
+import {AllCategoriesOutput} from 'restaurants/dtos/all-categories.dto';
+import {CategoryInput, CategoryOutput} from 'restaurants/dtos/category.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput,
+  CreateRestaurantOutput
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput,
+  DeleteRestaurantOutput
 } from 'restaurants/dtos/delete-restaurant.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput,
+  EditRestaurantOutput
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
+  RestaurantInput,
+  RestaurantOutput
+} from 'restaurants/dtos/restaurant.dto';
+import {
   RestaurantsInput,
-  RestaurantsOutput,
+  RestaurantsOutput
 } from 'restaurants/dtos/restaurants.dto';
-import { Category } from 'restaurants/entities/category.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { RestaurantService } from 'restaurants/restaurants.service';
-import { EUserRole, User } from 'users/entities/user.entity';
+import {
+  SearchRestaurantInput,
+  SearchRestaurantOutput
+} from 'restaurants/dtos/search-restaurant.dto';
+import {Category} from 'restaurants/entities/category.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {RestaurantService} from 'restaurants/restaurants.service';
+import {EUserRole, User} from 'users/entities/user.entity';
 
 @Resolver((of) => Restaurant)
 export class RestaurantResolver {
@@ -71,9 +79,23 @@ export class RestaurantResolver {
 
   @Query((returns) => RestaurantsOutput)
   restaurants(
-    @Args('input') restaurantsInput: RestaurantsInput,
+    @Args('input') RestaurantsInput: RestaurantsInput,
   ): Promise<RestaurantsOutput> {
-    return this.restaurantService.allRestaurants(restaurantsInput);
+    return this.restaurantService.allRestaurants(RestaurantsInput);
+  }
+
+  @Query((returns) => RestaurantOutput)
+  restaurant(
+    @Args('input') RestaurantInput: RestaurantInput,
+  ): Promise<RestaurantOutput> {
+    return this.restaurantService.findRestaurantById(RestaurantInput);
+  }
+
+  @Query((returns) => SearchRestaurantOutput)
+  searchRestaurant(
+    @Args('input') searchRestaurantInput: SearchRestaurantInput,
+  ): Promise<SearchRestaurantOutput> {
+    return this.restaurantService.searchRestaurantByName(searchRestaurantInput);
   }
 }
 
