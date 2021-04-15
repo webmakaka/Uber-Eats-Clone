@@ -1,42 +1,49 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
-import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
+import {Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {AllCategoriesOutput} from 'restaurants/dtos/all-categories.dto';
+import {CategoryInput, CategoryOutput} from 'restaurants/dtos/category.dto';
+import {
+  CreateDishInput,
+  CreateDishOutput
+} from 'restaurants/dtos/create-dish.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput,
+  CreateRestaurantOutput
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput,
+  DeleteRestaurantOutput
 } from 'restaurants/dtos/delete-restaurant.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput,
+  EditRestaurantOutput
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
   RestaurantInput,
-  RestaurantOutput,
+  RestaurantOutput
 } from 'restaurants/dtos/restaurant.dto';
 import {
   RestaurantsInput,
-  RestaurantsOutput,
+  RestaurantsOutput
 } from 'restaurants/dtos/restaurants.dto';
 import {
   SearchRestaurantInput,
-  SearchRestaurantOutput,
+  SearchRestaurantOutput
 } from 'restaurants/dtos/search-restaurant.dto';
-import { Category } from 'restaurants/entities/category.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { CategoryRepository } from 'restaurants/repositories/category.repository';
-import { ILike, Repository } from 'typeorm';
-import { User } from 'users/entities/user.entity';
+import {Category} from 'restaurants/entities/category.entity';
+import {Dish} from 'restaurants/entities/dish.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {CategoryRepository} from 'restaurants/repositories/category.repository';
+import {ILike, Repository} from 'typeorm';
+import {User} from 'users/entities/user.entity';
 
 @Injectable()
 export class RestaurantService {
   constructor(
     @InjectRepository(Restaurant)
     private readonly restaurants: Repository<Restaurant>,
+    @InjectRepository(Dish)
+    private readonly dishes: Repository<Dish>,
     private readonly categories: CategoryRepository,
   ) {}
 
@@ -225,7 +232,9 @@ export class RestaurantService {
     restaurantId,
   }: RestaurantInput): Promise<RestaurantOutput> {
     try {
-      const restaurant = await this.restaurants.findOne(restaurantId);
+      const restaurant = await this.restaurants.findOne(restaurantId, {
+        relations: ['menu'],
+      });
 
       if (!restaurant) {
         return {
@@ -267,6 +276,44 @@ export class RestaurantService {
       return {
         ok: false,
         error: '[App] Could not search for restaurants',
+      };
+    }
+  }
+
+  async createDish(
+    owner: User,
+    createDishInput: CreateDishInput,
+  ): Promise<CreateDishOutput> {
+    try {
+      const restaurant = await this.restaurants.findOne(
+        createDishInput.restaurantId,
+      );
+
+      if (!restaurant) {
+        return {
+          ok: false,
+          error: '[App] Restaurant not found',
+        };
+      }
+
+      if (owner.id !== restaurant.ownerId) {
+        return {
+          ok: false,
+          error: "[App] You can't do that",
+        };
+      }
+
+      await this.dishes.save(
+        this.dishes.create({ ...createDishInput, restaurant }),
+      );
+
+      return {
+        ok: true,
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: '[App] Could not create the dish',
       };
     }
   }
