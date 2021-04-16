@@ -1115,6 +1115,8 @@ mutation {
 }
 ```
 
+<br/>
+
 ```
 // CREATE DISH
 mutation {
@@ -1166,6 +1168,12 @@ mutation {
   }
 }
 ```
+
+<br/>
+
+### 117. Order Entity
+
+    $ nest generate module orders
 
 <br/>
 
