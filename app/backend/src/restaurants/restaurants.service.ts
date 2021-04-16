@@ -1,41 +1,46 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {AllCategoriesOutput} from 'restaurants/dtos/all-categories.dto';
-import {CategoryInput, CategoryOutput} from 'restaurants/dtos/category.dto';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
+import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
 import {
   CreateDishInput,
-  CreateDishOutput
+  CreateDishOutput,
 } from 'restaurants/dtos/create-dish.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput
+  CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
+  DeleteDishInput,
+  DeleteDishOutput,
+} from 'restaurants/dtos/delete-dish.dto';
+import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput
+  DeleteRestaurantOutput,
 } from 'restaurants/dtos/delete-restaurant.dto';
+import { EditDishInput, EditDishOutput } from 'restaurants/dtos/edit-dish.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput
+  EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
   RestaurantInput,
-  RestaurantOutput
+  RestaurantOutput,
 } from 'restaurants/dtos/restaurant.dto';
 import {
   RestaurantsInput,
-  RestaurantsOutput
+  RestaurantsOutput,
 } from 'restaurants/dtos/restaurants.dto';
 import {
   SearchRestaurantInput,
-  SearchRestaurantOutput
+  SearchRestaurantOutput,
 } from 'restaurants/dtos/search-restaurant.dto';
-import {Category} from 'restaurants/entities/category.entity';
-import {Dish} from 'restaurants/entities/dish.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {CategoryRepository} from 'restaurants/repositories/category.repository';
-import {ILike, Repository} from 'typeorm';
-import {User} from 'users/entities/user.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Dish } from 'restaurants/entities/dish.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { CategoryRepository } from 'restaurants/repositories/category.repository';
+import { ILike, Repository } from 'typeorm';
+import { User } from 'users/entities/user.entity';
 
 @Injectable()
 export class RestaurantService {
@@ -318,5 +323,81 @@ export class RestaurantService {
     }
   }
 
+  async editDish(
+    owner: User,
+    editDishInput: EditDishInput,
+  ): Promise<EditDishOutput> {
+    try {
+      const dish = await this.dishes.findOne(editDishInput.dishId, {
+        relations: ['restaurant'],
+      });
+
+      if (!dish) {
+        return {
+          ok: false,
+          error: '[App] Dish not found',
+        };
+      }
+
+      if (dish.restaurant.ownerId !== owner.id) {
+        return {
+          ok: false,
+          error: "[App] You can't do that",
+        };
+      }
+
+      await this.dishes.save([
+        {
+          id: editDishInput.dishId,
+          ...editDishInput,
+        },
+      ]);
+      return {
+        ok: true,
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        ok: false,
+        error: '[App] Could not edit dish',
+      };
+    }
+  }
+
+  async deleteDish(
+    owner: User,
+    { dishId }: DeleteDishInput,
+  ): Promise<DeleteDishOutput> {
+    try {
+      const dish = await this.dishes.findOne(dishId, {
+        relations: ['restaurant'],
+      });
+
+      if (!dish) {
+        return {
+          ok: false,
+          error: '[App] Dish not found',
+        };
+      }
+
+      if (dish.restaurant.ownerId !== owner.id) {
+        return {
+          ok: false,
+          error: "[App] You can't do that",
+        };
+      }
+
+      await this.dishes.delete(dishId);
+
+      return {
+        ok: true,
+      };
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not delete dish',
+      };
+    }
+  }
   //
 }

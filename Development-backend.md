@@ -881,6 +881,7 @@ returns:
 ### 110. Restaurants
 
 ```
+// GET RESTAURANTS
 {
   restaurants (input: {}){
     error
@@ -931,6 +932,7 @@ returns:
 ### 111-112. Restaurant and Search
 
 ```
+// GET RESTAURANT BY ID
 {
   restaurant (input: {restaurantId: 9}){
     error
@@ -1010,6 +1012,7 @@ returns:
 ### 114-115. Create Dish
 
 ```
+// CREATE DISH
 mutation {
   createDish(input: {
     restaurantId: 10
@@ -1029,7 +1032,10 @@ mutation {
 }
 ```
 
+<br/>
+
 ```
+// GET RESTAURANT BY ID
 {
   restaurant (input: {restaurantId: 10}){
     error
@@ -1081,6 +1087,82 @@ mutation {
         ]
       }
     }
+  }
+}
+```
+
+<br/>
+
+### 116. Edit and Delete Dish
+
+```
+// GET RESTAURANT BY ID
+{
+  restaurant (input: {restaurantId: 11}){
+    error
+    ok
+    restaurant {
+      id
+      name
+      menu {
+        id
+        name
+        description
+      }
+    }
+
+  }
+}
+```
+
+```
+// CREATE DISH
+mutation {
+  createDish(input: {
+    restaurantId: 11
+    name: "Mexican Chicken",
+    price: 12,
+    description: "Delicious!",
+    options: [
+      {
+        name: "Spice Level",
+        choices: [{name: "Little bit"}, {name: "Kill Me"}]
+      },    {
+        name: "Pickle",
+        extra:1
+      },
+      {
+        name: "Size",
+        choices: [{name: "L", extra: 2}, {name: "L", extra: 5}]
+      }
+    ]
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+// DELETE DISH
+mutation {
+  deleteDish(input: {dishId: 2}){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+// EDIT DISH
+mutation {
+  editDish(input: {dishId: 8, name: "Super Mexican Taco Chicken"}){
+    ok
+    error
   }
 }
 ```
