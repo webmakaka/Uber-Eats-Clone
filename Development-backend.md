@@ -1177,6 +1177,35 @@ mutation {
 
 <br/>
 
+### 118-124. Create Order
+
+```
+// CREATE ORDER
+mutation {
+  createOrder(
+    input: {
+      restaurantId: 10
+      items: [
+        {
+          dishId: 4
+          options: [
+            { name: "Spice Level", choice: "Kill Me" }
+            { name: "Size", choice: "XL" }
+            { name: "Pickle" }
+          ]
+        }
+        { dishId: 5, options: [{ name: "Size", choice: "L" }] }
+      ]
+    }
+  ) {
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>

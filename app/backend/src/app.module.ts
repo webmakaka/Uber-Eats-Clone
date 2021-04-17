@@ -2,24 +2,26 @@ import {
   MiddlewareConsumer,
   Module,
   NestModule,
-  RequestMethod
+  RequestMethod,
 } from '@nestjs/common';
-import {ConfigModule} from '@nestjs/config';
-import {GraphQLModule} from '@nestjs/graphql';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {AuthModule} from 'auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from 'auth/auth.module';
 import * as Joi from 'joi';
-import {JwtMiddeware} from 'jwt/jwt.middleware';
-import {JwtModule} from 'jwt/jwt.module';
-import {Order} from 'orders/entities/order.entity';
-import {Category} from 'restaurants/entities/category.entity';
-import {Dish} from 'restaurants/entities/dish.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {RestaurantsModule} from 'restaurants/restaurants.module';
-import {User} from 'users/entities/user.entity';
-import {Verification} from 'users/entities/verification.entity';
-import {UsersModule} from 'users/users.module';
-import {MailModule} from './mail/mail.module';
+import { JwtMiddeware } from 'jwt/jwt.middleware';
+import { JwtModule } from 'jwt/jwt.module';
+import { OrderItem } from 'orders/entities/order-item.entity';
+import { Order } from 'orders/entities/order.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Dish } from 'restaurants/entities/dish.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { RestaurantsModule } from 'restaurants/restaurants.module';
+import { User } from 'users/entities/user.entity';
+import { Verification } from 'users/entities/verification.entity';
+import { UsersModule } from 'users/users.module';
+import { MailModule } from './mail/mail.module';
+import {OrdersModule} from './orders/orders.module';
 
 @Module({
   imports: [
@@ -51,7 +53,15 @@ import {MailModule} from './mail/mail.module';
       synchronize: process.env.NODE_ENV !== 'prod',
       logging:
         process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-      entities: [User, Verification, Restaurant, Category, Dish, Order],
+      entities: [
+        User,
+        Verification,
+        Restaurant,
+        Category,
+        Dish,
+        Order,
+        OrderItem,
+      ],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
@@ -68,6 +78,7 @@ import {MailModule} from './mail/mail.module';
     AuthModule,
     UsersModule,
     RestaurantsModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],
