@@ -241,12 +241,12 @@ mutation {
 ### 031-033. Create Account Mutation
 
 ```
-// CREATE ACCOUNT
+// CREATE ACCOUNT OWNER
 mutation {
   createAccount(input: {
-    email: "myemail@gmail.com",
+    email: "owner@gmail.com",
     password: "pass1234"
-    role:Client
+    role:Owner
   }){
     ok
     error
@@ -288,7 +288,7 @@ mutation {
 // LOGIN
 mutation {
   login(input: {
-    email: "myemail@gmail.com",
+    email: "owner@gmail.com",
     password: "pass1234"
   }){
     ok
@@ -364,6 +364,7 @@ https://jwt.io/
 {
   me {
     email
+    role
   }
 }
 ```
@@ -732,7 +733,7 @@ mutation {
 <br/>
 
 ```
-// CREATE RESTAURANT
+// CREATE RESTAURANT OWNER
 mutation {
   createRestaurant(input: {
     name: "OWNER Restaurant",
@@ -1098,7 +1099,7 @@ mutation {
 ```
 // GET RESTAURANT BY ID
 {
-  restaurant (input: {restaurantId: 11}){
+  restaurant (input: {restaurantId: 10}){
     error
     ok
     restaurant {
@@ -1106,11 +1107,19 @@ mutation {
       name
       menu {
         id
-        name
+        name,
+        price,
         description
+        options {
+          name
+          extra
+          choices {
+            name
+            extra
+          }
+        }
       }
     }
-
   }
 }
 ```
@@ -1121,21 +1130,21 @@ mutation {
 // CREATE DISH
 mutation {
   createDish(input: {
-    restaurantId: 11
-    name: "Mexican Chicken",
+    restaurantId: 10
+    name: "Mexican Chicken 1",
     price: 12,
     description: "Delicious!",
     options: [
       {
         name: "Spice Level",
-        choices: [{name: "Little bit"}, {name: "Kill Me"}]
+        choices: [{name: "Little bit", extra: 1}, {name: "Kill Me", extra: 2}]
       },    {
         name: "Pickle",
-        extra:1
+        extra:3
       },
       {
         name: "Size",
-        choices: [{name: "L", extra: 2}, {name: "L", extra: 5}]
+        choices: [{name: "L", extra: 2}, {name: "XL", extra: 7}]
       }
     ]
   }){
@@ -1180,6 +1189,26 @@ mutation {
 ### 118-124. Create Order
 
 ```
+// CREATE ACCOUNT CLIENT
+mutation {
+  createAccount(input: {
+    email: "client@gmail.com",
+    password: "pass1234"
+    role:Client
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+// LOGIN
+
+<br/>
+
+```
 // CREATE ORDER
 mutation {
   createOrder(
@@ -1187,7 +1216,7 @@ mutation {
       restaurantId: 10
       items: [
         {
-          dishId: 4
+          dishId: 14
           options: [
             { name: "Spice Level", choice: "Kill Me" }
             { name: "Size", choice: "XL" }
@@ -1200,6 +1229,44 @@ mutation {
   ) {
     ok
     error
+  }
+}
+```
+
+<br/>
+
+### 125-126. getOrders and getOrder
+
+```
+// GET ORDERS
+{
+  getOrders(input:{status: Pending}){
+    ok,
+    error,
+    orders {
+      id
+      status
+    }
+  }
+}
+```
+
+<br/>
+
+```
+// GET ORDER BY ID
+{
+  me {
+    email
+    role
+  }
+  getOrder(input:{id: 1}){
+    ok,
+    error,
+    order {
+      id
+      status
+    }
   }
 }
 ```

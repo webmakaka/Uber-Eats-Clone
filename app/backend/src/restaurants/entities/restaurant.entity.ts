@@ -1,11 +1,11 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { IsString, Length } from 'class-validator';
-import { CoreEntity } from 'common/entities/core.entity';
-import { Order } from 'orders/entities/order.entity';
-import { Category } from 'restaurants/entities/category.entity';
-import { Dish } from 'restaurants/entities/dish.entity';
-import { Column, Entity, ManyToOne, OneToMany, RelationId } from 'typeorm';
-import { User } from 'users/entities/user.entity';
+import {Field, InputType, ObjectType} from '@nestjs/graphql';
+import {IsString, Length} from 'class-validator';
+import {CoreEntity} from 'common/entities/core.entity';
+import {Order} from 'orders/entities/order.entity';
+import {Category} from 'restaurants/entities/category.entity';
+import {Dish} from 'restaurants/entities/dish.entity';
+import {Column, Entity, ManyToOne, OneToMany, RelationId} from 'typeorm';
+import {User} from 'users/entities/user.entity';
 
 @InputType('RestaurantInputType', { isAbstract: true })
 @ObjectType()
@@ -40,12 +40,12 @@ export class Restaurant extends CoreEntity {
   })
   owner: User;
 
+  @RelationId((restaurant: Restaurant) => restaurant.owner)
+  ownerId: number;
+
   @Field((type) => [Order])
   @OneToMany((type) => Order, (order) => order.restaurant)
   orders: Order[];
-
-  @RelationId((restaurant: Restaurant) => restaurant.owner)
-  ownerId: number;
 
   @Field((type) => [Dish])
   @OneToMany((type) => Dish, (dish) => dish.restaurant)
