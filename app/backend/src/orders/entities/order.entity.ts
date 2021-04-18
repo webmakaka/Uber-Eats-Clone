@@ -22,6 +22,7 @@ import { User } from 'users/entities/user.entity';
 export enum EOrderStatus {
   Pending = 'Pending',
   Cooking = 'Cooking',
+  Coocked = 'Coocked',
   PickedUp = 'PickedUp',
   Delivered = 'Delivered',
 }
