@@ -1189,7 +1189,7 @@ mutation {
 ### 118-124. Create Order
 
 ```
-// CREATE ACCOUNT CLIENT
+// CREATE ACCOUNT CLIENT (CUSTOMER)
 mutation {
   createAccount(input: {
     email: "client@gmail.com",
@@ -1301,6 +1301,45 @@ mutation{
 <br/>
 
 ### 132. PUB_SUB
+
+<br/>
+
+### 133. Subscription Filter
+
+<br/>
+
+### 134. Subscription Resolve
+
+<br/>
+
+### 135-136. pendingOrders Subscription
+
+```
+// OWNER
+subscription {
+  pendingOrders {
+    id
+    items {
+      dish {
+        id
+        name
+        price
+      }
+      options {
+        name
+        choice
+      }
+    }
+  }
+}
+```
+
+<br/>
+
+```
+// CUSTOMER
+// CREATE ORDER IN STORE WHERE OWNER IS ABOVE
+```
 
 <br/>
 

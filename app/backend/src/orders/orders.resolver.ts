@@ -2,7 +2,7 @@ import { Inject } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { AuthUser } from 'auth/auth-user.decorator';
 import { Role } from 'auth/role.decorator';
-import { PUB_SUB } from 'common/common.constants';
+import { NEW_PENDING_ORDER, PUB_SUB } from 'common/common.constants';
 import { PubSub } from 'graphql-subscriptions';
 import {
   CreateOrderInput,
@@ -58,10 +58,17 @@ export class OrderResolver {
     return this.ordersService.editOrder(user, editOrderInput);
   }
 
-  @Subscription((returns) => String)
-  @Role(['Any'])
-  orderSubscription(@AuthUser() user: User) {
-    return pubsub.asyncIterator('hotPotatoes');
+  @Subscription((returns) => Order, {
+    filter: ({ pendingOrders: { ownerId } }, _, { user }) => {
+      return ownerId === user.id;
+    },
+    resolve: ({ pendingOrders: { order } }) => {
+      return order;
+    },
+  })
+  @Role([EUserRole.Owner])
+  pendingOrders() {
+    return this.pubSub.asyncIterator(NEW_PENDING_ORDER);
   }
 
   // The End
