@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'auth/auth.module';
+import { CommonModule } from 'common/common.module';
 import * as Joi from 'joi';
 import { JwtModule } from 'jwt/jwt.module';
 import { OrderItem } from 'orders/entities/order-item.entity';
@@ -79,6 +80,7 @@ import { OrdersModule } from './orders/orders.module';
     UsersModule,
     RestaurantsModule,
     OrdersModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
