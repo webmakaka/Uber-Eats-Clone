@@ -1204,6 +1204,22 @@ mutation {
 
 <br/>
 
+```
+// CREATE ACCOUNT DELIVERY
+mutation {
+  createAccount(input: {
+    email: "delivery@gmail.com",
+    password: "pass1234"
+    role:Delivery
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
 // LOGIN
 
 <br/>
@@ -1280,7 +1296,7 @@ mutation {
 mutation{
   editOrder(input:{
     id:1
-    status: Coocked
+    status: Cooked
   }){
     ok
     error
@@ -1315,7 +1331,7 @@ mutation{
 ### 135-136. pendingOrders Subscription
 
 ```
-// OWNER
+// OWNER - SUBSCRIPTION
 subscription {
   pendingOrders {
     id
@@ -1339,6 +1355,29 @@ subscription {
 ```
 // CUSTOMER
 // CREATE ORDER IN STORE WHERE OWNER IS ABOVE
+```
+
+<br/>
+
+### 137. cookedOrders
+
+```
+// DELIVERY - SUBSCRIPTION
+subscription {
+  cookedOrders {
+    restaurant {
+      name
+    }
+    total
+    customer {
+      email
+    }
+  }
+}
+```
+
+```
+OWNER - EDIT ORDER
 ```
 
 <br/>

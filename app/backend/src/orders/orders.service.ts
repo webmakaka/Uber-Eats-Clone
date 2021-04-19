@@ -1,6 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NEW_PENDING_ORDER, PUB_SUB } from 'common/common.constants';
+import {
+  NEW_COOKED_ORDER,
+  NEW_PENDING_ORDER,
+  PUB_SUB,
+} from 'common/common.constants';
 import { PubSub } from 'graphql-subscriptions';
 import {
   CreateOrderInput,
@@ -239,10 +243,7 @@ export class OrderService {
       }
 
       if (user.role === EUserRole.Owner) {
-        if (
-          status !== EOrderStatus.Cooking &&
-          status !== EOrderStatus.Coocked
-        ) {
+        if (status !== EOrderStatus.Cooking && status !== EOrderStatus.Cooked) {
           canEdit = false;
         }
       }
@@ -263,12 +264,18 @@ export class OrderService {
         };
       }
 
-      await this.orders.save([
-        {
-          id: orderId,
-          status,
-        },
-      ]);
+      await this.orders.save({
+        id: orderId,
+        status,
+      });
+
+      if (user.role === EUserRole.Owner) {
+        if (status === EOrderStatus.Cooked) {
+          await this.pubSub.publish(NEW_COOKED_ORDER, {
+            cookedOrders: { ...order, status },
+          });
+        }
+      }
 
       return {
         ok: true,

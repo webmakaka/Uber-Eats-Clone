@@ -1,19 +1,23 @@
-import { Inject } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { AuthUser } from 'auth/auth-user.decorator';
-import { Role } from 'auth/role.decorator';
-import { NEW_PENDING_ORDER, PUB_SUB } from 'common/common.constants';
-import { PubSub } from 'graphql-subscriptions';
+import {Inject} from '@nestjs/common';
+import {Args, Mutation, Query, Resolver, Subscription} from '@nestjs/graphql';
+import {AuthUser} from 'auth/auth-user.decorator';
+import {Role} from 'auth/role.decorator';
+import {
+  NEW_COOKED_ORDER,
+  NEW_PENDING_ORDER,
+  PUB_SUB
+} from 'common/common.constants';
+import {PubSub} from 'graphql-subscriptions';
 import {
   CreateOrderInput,
-  CreateOrderOutput,
+  CreateOrderOutput
 } from 'orders/dtos/create-order.dto';
-import { EditOrderInput, EditOrderOutput } from 'orders/dtos/edit-order.dto';
-import { GetOrderInput, GetOrderOutput } from 'orders/dtos/get-order.dto';
-import { GetOrdersInput, GetOrdersOutput } from 'orders/dtos/get-orders.dto';
-import { Order } from 'orders/entities/order.entity';
-import { OrderService } from 'orders/orders.service';
-import { EUserRole, User } from 'users/entities/user.entity';
+import {EditOrderInput, EditOrderOutput} from 'orders/dtos/edit-order.dto';
+import {GetOrderInput, GetOrderOutput} from 'orders/dtos/get-order.dto';
+import {GetOrdersInput, GetOrdersOutput} from 'orders/dtos/get-orders.dto';
+import {Order} from 'orders/entities/order.entity';
+import {OrderService} from 'orders/orders.service';
+import {EUserRole, User} from 'users/entities/user.entity';
 
 @Resolver((of) => Order)
 export class OrderResolver {
@@ -69,6 +73,12 @@ export class OrderResolver {
   @Role([EUserRole.Owner])
   pendingOrders() {
     return this.pubSub.asyncIterator(NEW_PENDING_ORDER);
+  }
+
+  @Subscription((returns) => Order)
+  @Role([EUserRole.Delivery])
+  cookedOrders() {
+    return this.pubSub.asyncIterator(NEW_COOKED_ORDER);
   }
 
   // The End
