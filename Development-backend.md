@@ -1275,6 +1275,29 @@ mutation {
 
 ### 127. Edit Order
 
+```
+// EDIT ORDER
+mutation{
+  editOrder(input:{
+    id:1
+    status: Coocked
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+### 128-129. Subscriptions
+
+    $ npm insta graphql-subscriptions
+
+<br/>
+
+### 130-131. Subscription Authentication
+
 <br/>
 
 ---

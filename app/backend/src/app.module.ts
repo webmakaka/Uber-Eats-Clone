@@ -1,15 +1,9 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'auth/auth.module';
 import * as Joi from 'joi';
-import { JwtMiddeware } from 'jwt/jwt.middleware';
 import { JwtModule } from 'jwt/jwt.module';
 import { OrderItem } from 'orders/entities/order-item.entity';
 import { Order } from 'orders/entities/order.entity';
@@ -21,7 +15,7 @@ import { User } from 'users/entities/user.entity';
 import { Verification } from 'users/entities/verification.entity';
 import { UsersModule } from 'users/users.module';
 import { MailModule } from './mail/mail.module';
-import {OrdersModule} from './orders/orders.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -64,8 +58,14 @@ import {OrdersModule} from './orders/orders.module';
       ],
     }),
     GraphQLModule.forRoot({
+      installSubscriptionHandlers: true,
       autoSchemaFile: true,
-      context: ({ req }) => ({ user: req['user'] }),
+      context: ({ req, connection }) => {
+        const TOKEN_KEY = 'x-jwt';
+        return {
+          token: req ? req.headers[TOKEN_KEY] : connection.context[TOKEN_KEY],
+        };
+      },
     }),
     JwtModule.forRoot({
       privateKey: process.env.PRIVATE_KEY,
@@ -83,11 +83,4 @@ import {OrdersModule} from './orders/orders.module';
   controllers: [],
   providers: [],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(JwtMiddeware).forRoutes({
-      path: '/graphql',
-      method: RequestMethod.POST,
-    });
-  }
-}
+export class AppModule {}
