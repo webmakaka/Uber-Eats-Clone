@@ -1385,6 +1385,7 @@ OWNER - EDIT ORDER
 ### 138-139. orderUpdates
 
 ```
+// ORDER UPDATE - SUBSCRIPTION
 subscription{
   orderUpdates(input: {
     id: 14
@@ -1392,6 +1393,28 @@ subscription{
     status
   }
 }
+```
+
+<br/>
+
+### 140. takeOrder
+
+```
+// DELIVERY - TAKE ORDER
+mutation {
+  takeOrder(input: {
+    id: 15
+  }){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+// ORDER UPDATE - SUBSCRIPTION
 ```
 
 <br/>

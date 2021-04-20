@@ -14,6 +14,7 @@ import {
 import {EditOrderInput, EditOrderOutput} from 'orders/dtos/edit-order.dto';
 import {GetOrderInput, GetOrderOutput} from 'orders/dtos/get-order.dto';
 import {GetOrdersInput, GetOrdersOutput} from 'orders/dtos/get-orders.dto';
+import {TakeOrderInput, TakeOrderOutput} from 'orders/dtos/take-order.dto';
 import {OrderItem} from 'orders/entities/order-item.entity';
 import {EOrderStatus, Order} from 'orders/entities/order.entity';
 import {Dish} from 'restaurants/entities/dish.entity';
@@ -290,4 +291,46 @@ export class OrderService {
       };
     }
   }
+
+  async takeOrder(
+    driver: User,
+    { id: orderId }: TakeOrderInput,
+  ): Promise<TakeOrderOutput> {
+    try {
+      const order = await this.orders.findOne(orderId);
+
+      if (!order) {
+        return {
+          ok: false,
+          error: '[App] Order not found',
+        };
+      }
+
+      if (order.driver) {
+        return {
+          ok: false,
+          error: '[App] This order already has a driver',
+        };
+      }
+
+      await this.orders.save({
+        id: orderId,
+        driver,
+      });
+
+      await this.pubSub.publish(NEW_ORDER_UPDATE, {
+        orderUpdater: { ...order, driver },
+      });
+      return {
+        ok: true,
+      };
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not update an order',
+      };
+    }
+  }
+
+  // End: orders.service.ts
 }
