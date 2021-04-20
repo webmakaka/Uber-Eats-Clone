@@ -3,21 +3,21 @@ import {
   Float,
   InputType,
   ObjectType,
-  registerEnumType,
+  registerEnumType
 } from '@nestjs/graphql';
-import { IsEnum, IsNumber } from 'class-validator';
-import { CoreEntity } from 'common/entities/core.entity';
-import { OrderItem } from 'orders/entities/order-item.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import {IsEnum, IsNumber} from 'class-validator';
+import {CoreEntity} from 'common/entities/core.entity';
+import {OrderItem} from 'orders/entities/order-item.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
-  RelationId,
+  RelationId
 } from 'typeorm';
-import { User } from 'users/entities/user.entity';
+import {User} from 'users/entities/user.entity';
 
 export enum EOrderStatus {
   Pending = 'Pending',
@@ -37,6 +37,7 @@ export class Order extends CoreEntity {
   @ManyToOne((type) => User, (user) => user.orders, {
     onDelete: 'SET NULL',
     nullable: true,
+    eager: true,
   })
   customer?: User;
 
@@ -47,6 +48,7 @@ export class Order extends CoreEntity {
   @ManyToOne((type) => User, (user) => user.rides, {
     onDelete: 'SET NULL',
     nullable: true,
+    eager: true,
   })
   driver?: User;
 
@@ -57,11 +59,14 @@ export class Order extends CoreEntity {
   @ManyToOne((type) => Restaurant, (restaurant) => restaurant.orders, {
     onDelete: 'SET NULL',
     nullable: true,
+    eager: true,
   })
   restaurant?: Restaurant;
 
   @Field((type) => [OrderItem])
-  @ManyToMany((type) => OrderItem)
+  @ManyToMany((type) => OrderItem, {
+    eager: true,
+  })
   @JoinTable()
   items: OrderItem[];
 

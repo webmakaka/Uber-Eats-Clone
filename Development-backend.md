@@ -1382,6 +1382,20 @@ OWNER - EDIT ORDER
 
 <br/>
 
+### 138-139. orderUpdates
+
+```
+subscription{
+  orderUpdates(input: {
+    id: 14
+  }){
+    status
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>

@@ -1,24 +1,25 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import {Inject, Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
 import {
   NEW_COOKED_ORDER,
+  NEW_ORDER_UPDATE,
   NEW_PENDING_ORDER,
-  PUB_SUB,
+  PUB_SUB
 } from 'common/common.constants';
-import { PubSub } from 'graphql-subscriptions';
+import {PubSub} from 'graphql-subscriptions';
 import {
   CreateOrderInput,
-  CreateOrderOutput,
+  CreateOrderOutput
 } from 'orders/dtos/create-order.dto';
-import { EditOrderInput, EditOrderOutput } from 'orders/dtos/edit-order.dto';
-import { GetOrderInput, GetOrderOutput } from 'orders/dtos/get-order.dto';
-import { GetOrdersInput, GetOrdersOutput } from 'orders/dtos/get-orders.dto';
-import { OrderItem } from 'orders/entities/order-item.entity';
-import { EOrderStatus, Order } from 'orders/entities/order.entity';
-import { Dish } from 'restaurants/entities/dish.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { Repository } from 'typeorm';
-import { EUserRole, User } from 'users/entities/user.entity';
+import {EditOrderInput, EditOrderOutput} from 'orders/dtos/edit-order.dto';
+import {GetOrderInput, GetOrderOutput} from 'orders/dtos/get-order.dto';
+import {GetOrdersInput, GetOrdersOutput} from 'orders/dtos/get-orders.dto';
+import {OrderItem} from 'orders/entities/order-item.entity';
+import {EOrderStatus, Order} from 'orders/entities/order.entity';
+import {Dish} from 'restaurants/entities/dish.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {Repository} from 'typeorm';
+import {EUserRole, User} from 'users/entities/user.entity';
 
 @Injectable()
 export class OrderService {
@@ -218,9 +219,7 @@ export class OrderService {
     { id: orderId, status }: EditOrderInput,
   ): Promise<EditOrderOutput> {
     try {
-      const order = await this.orders.findOne(orderId, {
-        relations: ['restaurant'],
-      });
+      const order = await this.orders.findOne(orderId);
 
       if (!order) {
         return {
@@ -269,13 +268,17 @@ export class OrderService {
         status,
       });
 
+      const newOrder = { ...order, status };
+
       if (user.role === EUserRole.Owner) {
         if (status === EOrderStatus.Cooked) {
           await this.pubSub.publish(NEW_COOKED_ORDER, {
-            cookedOrders: { ...order, status },
+            cookedOrders: newOrder,
           });
         }
       }
+
+      await this.pubSub.publish(NEW_ORDER_UPDATE, { orderUpdates: newOrder });
 
       return {
         ok: true,
