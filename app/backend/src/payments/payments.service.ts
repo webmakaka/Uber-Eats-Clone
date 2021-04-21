@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Interval } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   CreatePaymentInput,
@@ -7,7 +8,7 @@ import {
 import { GetPaymentsOutput } from 'payments/dtos/get-payments.dto';
 import { Payment } from 'payments/entities/payment.entity';
 import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 import { User } from 'users/entities/user.entity';
 
 @Injectable()
@@ -79,6 +80,22 @@ export class PaymentService {
         error: '[App] Could not load paymenst',
       };
     }
+  }
+
+  @Interval(2000)
+  async checkPromotedRestaurants() {
+    const restaurants = await this.restaurants.find({
+      isPromoted: true,
+      promotedUntil: LessThan(new Date()),
+    });
+
+    console.log(restaurants);
+
+    restaurants.forEach(async (restaurant) => {
+      restaurant.isPromoted = false;
+      restaurant.promotedUntil = null;
+      await this.restaurants.save(restaurant);
+    });
   }
 
   // End: payments.service.ts

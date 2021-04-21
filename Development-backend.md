@@ -1482,7 +1482,7 @@ mutation {
 
 <br/>
 
-### 147-148. Promoting Restaurants
+### 147. Promoting Restaurants (part 1)
 
 ```
 mutation{
@@ -1505,6 +1505,10 @@ mutation{
   }
 }
 ```
+
+<br/>
+
+### 148. Promoting Restaurants (part 2)
 
 <br/>
 
