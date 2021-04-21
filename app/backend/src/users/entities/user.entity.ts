@@ -1,17 +1,17 @@
-import {InternalServerErrorException} from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
 import {
   Field,
   InputType,
   ObjectType,
-  registerEnumType
+  registerEnumType,
 } from '@nestjs/graphql';
 import * as bcrypt from 'bcrypt';
-import {IsBoolean, IsEmail, IsEnum, IsString} from 'class-validator';
-import {CoreEntity} from 'common/entities/core.entity';
-import {Order} from 'orders/entities/order.entity';
-import {Payment} from 'payments/entities/payment.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {BeforeInsert, BeforeUpdate, Column, Entity, OneToMany} from 'typeorm';
+import { IsBoolean, IsEmail, IsEnum, IsString } from 'class-validator';
+import { CoreEntity } from 'common/entities/core.entity';
+import { Order } from 'orders/entities/order.entity';
+import { Payment } from 'payments/entities/payment.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany } from 'typeorm';
 
 export enum EUserRole {
   Client = 'Client',
@@ -57,7 +57,7 @@ export class User extends CoreEntity {
   orders: Order[];
 
   @Field((type) => [Payment])
-  @OneToMany((type) => Payment, (payment) => payment.user)
+  @OneToMany((type) => Payment, (payment) => payment.user, { eager: true })
   payments: Payment[];
 
   @Field((type) => [Order])

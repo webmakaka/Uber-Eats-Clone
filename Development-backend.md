@@ -1434,12 +1434,43 @@ https://paddle.com/
 ### 143-144. createPayment
 
 ```
+// OWNER - CREATE PAYMENT
 mutation {
   createPayment(input: {
     transactionId: "xxxxxxx",
     restaurantId: 10
   }) {ok
   error}
+}
+```
+
+<br/>
+
+### 145. getPayments Resolver
+
+```
+// OWNER - GET TRANSACTIONS
+{
+  me {
+    payments {
+      transactionId
+    }
+  }
+}
+```
+
+<br/>
+
+```
+// OWNER - GET TRANSACTIONS
+{
+  getPayments {
+    ok
+    error
+    payments {
+      transactionId
+    }
+  }
 }
 ```
 
