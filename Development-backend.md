@@ -1476,6 +1476,38 @@ mutation {
 
 <br/>
 
+### 146. Task Scheduling is Awesome
+
+    $ npm install --save @nestjs/schedule
+
+<br/>
+
+### 147-148. Promoting Restaurants
+
+```
+mutation{
+  createPayment(input: { transactionId: "xxxxxxx", restaurantId: 10}){
+    ok
+    error
+  }
+}
+```
+
+<br/>
+
+```
+{
+  restaurants (input: {} ) {
+    results {
+      name
+      isPromoted
+    }
+  }
+}
+```
+
+<br/>
+
 ---
 
 <br/>

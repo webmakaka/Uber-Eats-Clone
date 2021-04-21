@@ -36,7 +36,7 @@ export class PaymentService {
       if (restaurant.ownerId !== owner.id) {
         return {
           ok: false,
-          error: "[App] You can't to this",
+          error: "[App] You can't do this",
         };
       }
 
@@ -47,6 +47,13 @@ export class PaymentService {
           restaurant,
         }),
       );
+
+      restaurant.isPromoted = true;
+      const date = new Date();
+      date.setDate(date.getDate() + 7);
+      restaurant.promotedUntil = date;
+
+      this.restaurants.save(restaurant);
 
       return {
         ok: true,

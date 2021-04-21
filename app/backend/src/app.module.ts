@@ -1,6 +1,7 @@
 import {Module} from '@nestjs/common';
 import {ConfigModule} from '@nestjs/config';
 import {GraphQLModule} from '@nestjs/graphql';
+import {ScheduleModule} from '@nestjs/schedule';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {AuthModule} from 'auth/auth.module';
 import {CommonModule} from 'common/common.module';
@@ -71,6 +72,7 @@ import {PaymentsModule} from './payments/payments.module';
         };
       },
     }),
+    ScheduleModule.forRoot(),
     JwtModule.forRoot({
       privateKey: process.env.PRIVATE_KEY,
     }),

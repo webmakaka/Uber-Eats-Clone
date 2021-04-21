@@ -1,11 +1,11 @@
-import {Field, InputType, ObjectType} from '@nestjs/graphql';
-import {IsString, Length} from 'class-validator';
-import {CoreEntity} from 'common/entities/core.entity';
-import {Order} from 'orders/entities/order.entity';
-import {Category} from 'restaurants/entities/category.entity';
-import {Dish} from 'restaurants/entities/dish.entity';
-import {Column, Entity, ManyToOne, OneToMany, RelationId} from 'typeorm';
-import {User} from 'users/entities/user.entity';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { IsString, Length } from 'class-validator';
+import { CoreEntity } from 'common/entities/core.entity';
+import { Order } from 'orders/entities/order.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Dish } from 'restaurants/entities/dish.entity';
+import { Column, Entity, ManyToOne, OneToMany, RelationId } from 'typeorm';
+import { User } from 'users/entities/user.entity';
 
 @InputType('RestaurantInputType', { isAbstract: true })
 @ObjectType()
@@ -50,4 +50,14 @@ export class Restaurant extends CoreEntity {
   @Field((type) => [Dish])
   @OneToMany((type) => Dish, (dish) => dish.restaurant)
   menu: Dish[];
+
+  @Field((type) => Boolean)
+  @Column({ default: false })
+  isPromoted: boolean;
+
+  @Field((type) => Date, { nullable: true })
+  @Column({ nullable: true })
+  promotedUntil: Date;
+
+  // End: restaurant.entity.ts
 }
