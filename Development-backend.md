@@ -1431,6 +1431,20 @@ https://paddle.com/
 
 <br/>
 
+### 143-144. createPayment
+
+```
+mutation {
+  createPayment(input: {
+    transactionId: "xxxxxxx",
+    restaurantId: 10
+  }) {ok
+  error}
+}
+```
+
+<br/>
+
 ---
 
 <br/>

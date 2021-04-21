@@ -8,9 +8,9 @@ import { User } from 'users/entities/user.entity';
 @ObjectType()
 @Entity()
 export class Payment extends CoreEntity {
-  @Field((type) => Int)
+  @Field((type) => String)
   @Column()
-  transactionId: number;
+  transactionId: string;
 
   @Field((type) => User)
   @ManyToOne((type) => User, (user) => user.payments)
@@ -23,6 +23,7 @@ export class Payment extends CoreEntity {
   @ManyToOne((type) => Restaurant)
   restaurant: Restaurant;
 
+  @Field((type) => Int)
   @RelationId((payment: Payment) => payment.restaurant)
   restaurantId: number;
 
