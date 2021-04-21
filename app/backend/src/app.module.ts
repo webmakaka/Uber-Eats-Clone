@@ -1,22 +1,24 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { GraphQLModule } from '@nestjs/graphql';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'auth/auth.module';
-import { CommonModule } from 'common/common.module';
+import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
+import {GraphQLModule} from '@nestjs/graphql';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {AuthModule} from 'auth/auth.module';
+import {CommonModule} from 'common/common.module';
 import * as Joi from 'joi';
-import { JwtModule } from 'jwt/jwt.module';
-import { OrderItem } from 'orders/entities/order-item.entity';
-import { Order } from 'orders/entities/order.entity';
-import { Category } from 'restaurants/entities/category.entity';
-import { Dish } from 'restaurants/entities/dish.entity';
-import { Restaurant } from 'restaurants/entities/restaurant.entity';
-import { RestaurantsModule } from 'restaurants/restaurants.module';
-import { User } from 'users/entities/user.entity';
-import { Verification } from 'users/entities/verification.entity';
-import { UsersModule } from 'users/users.module';
-import { MailModule } from './mail/mail.module';
-import { OrdersModule } from './orders/orders.module';
+import {JwtModule} from 'jwt/jwt.module';
+import {OrderItem} from 'orders/entities/order-item.entity';
+import {Order} from 'orders/entities/order.entity';
+import {Payment} from 'payments/entities/payment.entity';
+import {Category} from 'restaurants/entities/category.entity';
+import {Dish} from 'restaurants/entities/dish.entity';
+import {Restaurant} from 'restaurants/entities/restaurant.entity';
+import {RestaurantsModule} from 'restaurants/restaurants.module';
+import {User} from 'users/entities/user.entity';
+import {Verification} from 'users/entities/verification.entity';
+import {UsersModule} from 'users/users.module';
+import {MailModule} from './mail/mail.module';
+import {OrdersModule} from './orders/orders.module';
+import {PaymentsModule} from './payments/payments.module';
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import { OrdersModule } from './orders/orders.module';
         Dish,
         Order,
         OrderItem,
+        Payment,
       ],
     }),
     GraphQLModule.forRoot({
@@ -81,6 +84,7 @@ import { OrdersModule } from './orders/orders.module';
     RestaurantsModule,
     OrdersModule,
     CommonModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],

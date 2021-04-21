@@ -1419,6 +1419,18 @@ mutation {
 
 <br/>
 
+### 141. Payment Introduction
+
+https://paddle.com/
+
+<br/>
+
+### 142. Payment Module
+
+    $ nest generate module payments
+
+<br/>
+
 ---
 
 <br/>
