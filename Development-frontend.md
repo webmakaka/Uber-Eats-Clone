@@ -2,9 +2,13 @@
 
 <br/>
 
-### [Backend](./Development-backend.md)
+## 02. Frontend
 
-### [Frontend](./Development-frontend.md)
+<br/>
+
+### 14.0 - Create React App
+
+    $ npx create-react-app . --template=typescript
 
 <br/>
 
