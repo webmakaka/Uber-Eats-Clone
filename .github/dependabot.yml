@@ -8,3 +8,7 @@ updates:
     directory: '/app/backend/'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: '/app/frontend/'
+    schedule:
+      interval: 'daily'

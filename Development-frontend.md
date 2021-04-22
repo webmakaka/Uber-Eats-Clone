@@ -21,6 +21,12 @@
 
 <br/>
 
+### 14.3 - Apollo Setup
+
+    $ npm install @apollo/client graphql
+
+<br/>
+
 ---
 
 <br/>
