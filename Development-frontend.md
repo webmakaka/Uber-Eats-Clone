@@ -12,6 +12,15 @@
 
 <br/>
 
+### 14.1 - 14.2 - TailwindCSS
+
+    $ npm install tailwindcss postcss autoprefixer
+
+    $ npx tailwindcss init
+    $ npm run tailwind:build
+
+<br/>
+
 ---
 
 <br/>

@@ -2,3 +2,6 @@
 *.log
 node_modules/
 package-lock.json
+yarn.lock
+
+app/frontend/src/styles/styles.css
