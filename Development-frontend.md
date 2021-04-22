@@ -45,6 +45,10 @@ https://react-hook-form.com/
 
 <br/>
 
+### 15.2 - React Hook Form (part 2)
+
+<br/>
+
 ---
 
 <br/>
