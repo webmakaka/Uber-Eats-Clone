@@ -1,8 +1,20 @@
+import { useMutation } from '@apollo/client';
+import { FormError } from 'components/form-error';
 import { useForm } from 'react-hook-form';
 
+const LOGIN_MUTATION = gql`
+  mutation PotatoMutation($email: String!, $password: String!) {
+    login(input: { email: $email, password: $password }) {
+      ok
+      token
+      error
+    }
+  }
+`;
+
 interface ILoginForm {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
 }
 
 export const Login = () => {
@@ -12,8 +24,13 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>();
+  const [loginMutation, { loading, error, data }] = useMutation(LOGIN_MUTATION);
 
   const onSubmit = () => {
+    const { email, password } = getValues();
+    loginMutation({
+      variables: { email, password },
+    });
     console.log(getValues());
   };
 
@@ -37,15 +54,13 @@ export const Login = () => {
           />
 
           {errors.email?.message && (
-            <span className="font-medium text-red-500">
-              {errors.email?.message}
-            </span>
+            <FormError errorMessage={errors.email?.message} />
           )}
 
           <input
             {...register('password', {
               required: 'Password is required',
-              minLength: 10,
+              minLength: 4,
             })}
             required
             name="password"
@@ -55,15 +70,11 @@ export const Login = () => {
           />
 
           {errors.password?.message && (
-            <span className="font-medium text-red-500">
-              {errors.password?.message}
-            </span>
+            <FormError errorMessage={errors.password?.message} />
           )}
 
           {errors.password?.type === 'minLength' && (
-            <span className="font-medium text-red-500">
-              Password must be more than 10 chars.
-            </span>
+            <FormError errorMessage="Password must be more than 4 chars." />
           )}
           <button className="btn mb-3">Log In</button>
         </form>
