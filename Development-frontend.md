@@ -49,6 +49,12 @@ https://react-hook-form.com/
 
 <br/>
 
+### 15.3 - Router and types
+
+    $ npm instl @types/react-router-dom
+
+<br/>
+
 ---
 
 <br/>
