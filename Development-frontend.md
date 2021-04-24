@@ -73,7 +73,16 @@ https://react-hook-form.com/
 
 ### 15.6 - Login Mutation (part 1)
 
+<br/>
 
+### 15.7 - Apollo Codegen
+
+    $ npm install -g apollo
+    $ npm install apollo
+
+<br/>
+
+    $ npm run apollo:codegen
 
 <br/>
 

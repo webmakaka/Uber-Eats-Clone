@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/client/react';
-import { client } from 'apollo';
+import { client } from 'apolloConfig';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'styles/styles.css';

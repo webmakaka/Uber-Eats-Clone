@@ -1,4 +1,4 @@
-import { isLoggedInVar } from 'apollo';
+import { isLoggedInVar } from 'apolloConfig';
 
 export const LoggedInRouter = () => {
   const onClick = () => {
