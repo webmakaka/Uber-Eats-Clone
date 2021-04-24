@@ -31,14 +31,14 @@ export const Login = () => {
 
   const onCompleted = (data: loginMutation) => {
     const {
-      login: { error, ok, token },
+      login: { ok, token },
     } = data;
     if (ok) {
       console.log(token);
     }
   };
 
-  const [loginMutation, { data: loginMutationResult }] = useMutation<
+  const [loginMutation, { data: loginMutationResult, loading }] = useMutation<
     loginMutation,
     loginMutationVariables
   >(LOGIN_MUTATION, {
@@ -46,10 +46,12 @@ export const Login = () => {
   });
 
   const onSubmit = () => {
-    const { email, password } = getValues();
-    loginMutation({
-      variables: { loginInput: { email, password } },
-    });
+    if (!loading) {
+      const { email, password } = getValues();
+      loginMutation({
+        variables: { loginInput: { email, password } },
+      });
+    }
   };
 
   return (
@@ -94,7 +96,9 @@ export const Login = () => {
           {errors.password?.type === 'minLength' && (
             <FormError errorMessage="Password must be more than 4 chars." />
           )}
-          <button className="btn mb-3">Log In</button>
+          <button className="btn mb-3">
+            {loading ? 'Loading...' : 'Log In'}
+          </button>
           {loginMutationResult?.login.error && (
             <FormError errorMessage={loginMutationResult?.login.error} />
           )}
