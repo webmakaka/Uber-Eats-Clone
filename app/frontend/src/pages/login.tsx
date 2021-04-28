@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import { authToken, isLoggedInVar } from 'apolloConfig';
+import { authTokenVar, isLoggedInVar } from 'apolloConfig';
 import { Button } from 'components/button';
 import { FormError } from 'components/form-error';
 import { LOCALSTORAGE_TOKEN } from 'const';
@@ -43,7 +43,7 @@ export const Login = () => {
     } = data;
     if (ok && token) {
       localStorage.setItem(LOCALSTORAGE_TOKEN, token);
-      authToken(token);
+      authTokenVar(token);
       isLoggedInVar(true);
     }
   };

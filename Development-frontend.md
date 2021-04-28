@@ -121,6 +121,14 @@ http://emailregex.com/
 
 <br/>
 
+### 15.15 - Using the Token
+
+<br/>
+
+![Application](/img/pic-part02-les15-pic05.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
