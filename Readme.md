@@ -18,6 +18,8 @@ https://github.com/nomadcoders/nuber-eats-frontend
 
 <hr/>
 
+**Something bad happened with npm, use yarn!**
+
 <br/>
 
 ### [Development](./Development.md)
