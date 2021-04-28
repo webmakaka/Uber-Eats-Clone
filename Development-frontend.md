@@ -129,6 +129,14 @@ http://emailregex.com/
 
 <br/>
 
+### 15.16 - Routers and 404s
+
+<br/>
+
+![Application](/img/pic-part02-les15-pic06.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
