@@ -8,7 +8,7 @@
 
 ### 004. Backend Setup
 
-    $ npm install -g @nestjs/cli
+    $ yarn install -g @nestjs/cli
 
 <br/>
 
@@ -63,7 +63,7 @@ http://localhost:3000/graphql
 
 ### 011. Validating ArgsTypes
 
-    $ npm install class-validator class-transformer
+    $ yarn install class-validator class-transformer
 
 <br/>
 
@@ -77,14 +77,14 @@ http://localhost:3000/graphql
 
 https://docs.nestjs.com/techniques/database
 
-    $ npm install @nestjs/typeorm typeorm pg
+    $ yarn install @nestjs/typeorm typeorm pg
 
 <br/>
 
 ### 016. Introducing ConfigService
 
-    $ npm install @nestjs/config
-    $ npm install cross-env
+    $ yarn install @nestjs/config
+    $ yarn install cross-env
 
 <br/>
 
@@ -94,7 +94,7 @@ https://docs.nestjs.com/techniques/database
 
 ### 018. Validating ConfigService
 
-    $ npm install joi
+    $ yarn install joi
 
 <br/>
 
@@ -277,8 +277,8 @@ mutation {
 
 ### 035. Hashing Passwords
 
-    $ npm install bcrypt
-    $ npm install --save-dev @types/bcrypt
+    $ yarn install bcrypt
+    $ yarn install --save-dev @types/bcrypt
 
 <br/>
 
@@ -320,8 +320,8 @@ mutation {
 
 ### 039. Generating JWT
 
-    $ npm install jsonwebtoken
-    $ npm install --save-dev @types/jsonwebtoken
+    $ yarn install jsonwebtoken
+    $ yarn install --save-dev @types/jsonwebtoken
 
 <br/>
 
@@ -490,7 +490,7 @@ mutation {
 
 ### 056. Creating Verifications
 
-    $ npm install uuid @types/uuid
+    $ yarn install uuid @types/uuid
 
 <br/>
 
@@ -528,8 +528,8 @@ MAILGUN_FROM_EMAIL=
 
 ### 062. Mailgun API
 
-    $ npm install got
-    $ npm install form-data
+    $ yarn install got
+    $ yarn install form-data
 
 <br/>
 
@@ -1478,7 +1478,7 @@ mutation {
 
 ### 146. Task Scheduling is Awesome
 
-    $ npm install --save @nestjs/schedule
+    $ yarn install --save @nestjs/schedule
 
 <br/>
 

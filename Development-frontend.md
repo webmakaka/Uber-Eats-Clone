@@ -14,7 +14,7 @@
 
 ### 14.1 - 14.2 - TailwindCSS
 
-    $ npm install tailwindcss postcss autoprefixer
+    $ yarn install tailwindcss postcss autoprefixer
 
     $ npx tailwindcss init
     $ npm run tailwind:build
@@ -23,13 +23,13 @@
 
 ### 14.3 - Apollo Setup
 
-    $ npm install @apollo/client graphql
+    $ yarn install @apollo/client graphql
 
 <br/>
 
 ### 14.4 - React Router Dom
 
-    $ npm install react-router-dom
+    $ yarn install react-router-dom
 
 <br/>
 
@@ -77,8 +77,8 @@ https://react-hook-form.com/
 
 ### 15.7 - Apollo Codegen
 
-    $ npm install -g apollo
-    $ npm install apollo
+    $ yarn install -g apollo
+    $ yarn install apollo
 
 <br/>
 
@@ -100,8 +100,8 @@ https://react-hook-form.com/
 
 ### 15.12 - Create Account Mutation
 
-    $ npm install react-helmet
-    $ npm install @types/react-helmet
+    $ yarn install react-helmet
+    $ yarn install @types/react-helmet
 
 <br/>
 
@@ -112,6 +112,12 @@ https://react-hook-form.com/
 ### 15.13 - Create Account Mutation (part Two)
 
 http://emailregex.com/
+
+<br/>
+
+### 15.14 - Saving the Token
+
+    $ yarn install react-helmet-async
 
 <br/>
 

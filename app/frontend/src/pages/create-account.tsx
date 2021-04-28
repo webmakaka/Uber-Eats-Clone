@@ -2,7 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import { Button } from 'components/button';
 import { FormError } from 'components/form-error';
 import nuberLogo from 'images/logo.svg';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import {
