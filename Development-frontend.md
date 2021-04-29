@@ -151,6 +151,14 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 <br/>
 
+### 16.0 - 16.1 - Verifying Email
+
+<br/>
+
+![Application](/img/pic-part02-les16-pic01.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
