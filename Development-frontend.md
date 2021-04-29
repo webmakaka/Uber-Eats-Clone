@@ -137,6 +137,20 @@ http://emailregex.com/
 
 <br/>
 
+### 15.17 - 15.18 - Header
+
+https://github.com/FortAwesome/react-fontawesome#documentation
+
+    $ yarn add @fortawesome/fontawesome-svg-core
+    $ yarn add @fortawesome/free-solid-svg-icons
+    $ yarn add @fortawesome/react-fontawesome
+
+<br/>
+
+![Application](/img/pic-part02-les15-pic07.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
