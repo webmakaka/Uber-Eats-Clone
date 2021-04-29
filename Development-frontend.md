@@ -159,6 +159,14 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 <br/>
 
+### 16.2 - 16.3 - Edit Profile
+
+<br/>
+
+![Application](/img/pic-part02-les16-pic02.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
