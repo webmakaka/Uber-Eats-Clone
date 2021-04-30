@@ -171,6 +171,10 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 <br/>
 
+### 17.0 - Restaurants Query
+
+<br/>
+
 ---
 
 <br/>
