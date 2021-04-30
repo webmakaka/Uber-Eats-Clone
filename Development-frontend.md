@@ -198,8 +198,30 @@ https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/italian.png
 
 ![Application](/img/pic-part02-les17-pic01.png?raw=true)
 
+<br/>
 
+### 17.2 - Restaurants List
 
+**Images:**
+
+```
+https://d1ralsognjng37.cloudfront.net/b43e3aa8-ad1f-48d9-9109-6024f5ff7793.jpeg
+
+https://d1ralsognjng37.cloudfront.net/8252b41b-1673-4975-91bc-5b609c27b205.jpeg
+
+https://d1ralsognjng37.cloudfront.net/b0bf9b96-2e62-427e-9743-6229715efea1.jpeg
+
+https://d1ralsognjng37.cloudfront.net/3ff8e534-94ec-4dc9-a467-433099e0561f.jpeg
+
+https://d1ralsognjng37.cloudfront.net/32c7d67f-c36f-4471-9cf6-bb16e3b83028.jpeg
+
+https://duyt4h9nfnj50.cloudfront.net/resized/1537291913826-w2880-3f.jpg
+
+```
+
+<br/>
+
+![Application](/img/pic-part02-les17-pic02.png?raw=true)
 
 <br/>
 
