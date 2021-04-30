@@ -167,6 +167,10 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 <br/>
 
+### 16.4 - writeFragment vs Refetch
+
+<br/>
+
 ---
 
 <br/>
