@@ -195,6 +195,7 @@ mutation {
 <br/>
 
 ```
+// UPDATE RESTAURANT
 mutation {
   updateRestaurant(input: {
     id: 2,
@@ -424,7 +425,6 @@ https://jwt.io/
     user {
       id
     }
-
   }
 }
 ```
@@ -673,7 +673,7 @@ mutation {
   createRestaurant(input: {
     name: "BBQ House",
     address: "123 Altavista",
-    coverImg: "https://",
+    coverImg: "https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/asian.png",
     categoryName: "Korean BBQ"
   }){
     ok
@@ -733,12 +733,12 @@ mutation {
 <br/>
 
 ```
-// CREATE RESTAURANT OWNER
+// CREATE RESTAURANT - OWNER
 mutation {
   createRestaurant(input: {
-    name: "OWNER Restaurant",
+    name: "OWNER Restaurant 1",
     address: "OWNER Address",
-    coverImg: "https://",
+    coverImg: "https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/bbq.png",
     categoryName: "OWNER Category"
   }){
     ok
@@ -772,7 +772,7 @@ mutation {
 ### 106-107. Categories
 
 ```
-// ALL CATEGORIES
+// GET ALL CATEGORIES
 {
   allCategories {
     ok
@@ -857,6 +857,7 @@ returns:
 ### 109. Pagination
 
 ```
+// GET CATEGORY
 {
   category(input: {
     slug: "owner-restaurant",

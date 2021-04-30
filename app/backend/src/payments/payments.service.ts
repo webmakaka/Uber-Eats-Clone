@@ -3,7 +3,7 @@ import { Interval } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   CreatePaymentInput,
-  CreatePaymentOutput,
+  CreatePaymentOutput
 } from 'payments/dtos/create-payment.dto';
 import { GetPaymentsOutput } from 'payments/dtos/get-payments.dto';
 import { Payment } from 'payments/entities/payment.entity';
@@ -88,8 +88,6 @@ export class PaymentService {
       isPromoted: true,
       promotedUntil: LessThan(new Date()),
     });
-
-    console.log(restaurants);
 
     restaurants.forEach(async (restaurant) => {
       restaurant.isPromoted = false;

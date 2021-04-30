@@ -175,6 +175,34 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 <br/>
 
+### 17.1 - Categories Style
+
+**Images:**
+
+```
+https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/bbq.png
+https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/dessert.png
+https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/asian.png
+https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/italian.png
+```
+
+```
+// CREATE ACCOUNT OWNER
+// LOGIN
+// CREATE RESTAURANT OWNER
+// CREATE RESTAURANT
+// GET ALL CATEGORIES
+```
+
+<br/>
+
+![Application](/img/pic-part02-les17-pic01.png?raw=true)
+
+
+
+
+<br/>
+
 ---
 
 <br/>

@@ -5,7 +5,7 @@ import {
   Parent,
   Query,
   ResolveField,
-  Resolver,
+  Resolver
 } from '@nestjs/graphql';
 import { AuthUser } from 'auth/auth-user.decorator';
 import { Role } from 'auth/role.decorator';
@@ -13,36 +13,36 @@ import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
 import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
 import {
   CreateDishInput,
-  CreateDishOutput,
+  CreateDishOutput
 } from 'restaurants/dtos/create-dish.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput,
+  CreateRestaurantOutput
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteDishInput,
-  DeleteDishOutput,
+  DeleteDishOutput
 } from 'restaurants/dtos/delete-dish.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput,
+  DeleteRestaurantOutput
 } from 'restaurants/dtos/delete-restaurant.dto';
 import { EditDishInput, EditDishOutput } from 'restaurants/dtos/edit-dish.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput,
+  EditRestaurantOutput
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
   RestaurantInput,
-  RestaurantOutput,
+  RestaurantOutput
 } from 'restaurants/dtos/restaurant.dto';
 import {
   RestaurantsInput,
-  RestaurantsOutput,
+  RestaurantsOutput
 } from 'restaurants/dtos/restaurants.dto';
 import {
   SearchRestaurantInput,
-  SearchRestaurantOutput,
+  SearchRestaurantOutput
 } from 'restaurants/dtos/search-restaurant.dto';
 import { Category } from 'restaurants/entities/category.entity';
 import { Dish } from 'restaurants/entities/dish.entity';

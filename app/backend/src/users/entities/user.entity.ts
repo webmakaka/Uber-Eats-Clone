@@ -3,7 +3,7 @@ import {
   Field,
   InputType,
   ObjectType,
-  registerEnumType,
+  registerEnumType
 } from '@nestjs/graphql';
 import * as bcrypt from 'bcrypt';
 import { IsBoolean, IsEmail, IsEnum, IsString } from 'class-validator';
@@ -71,7 +71,6 @@ export class User extends CoreEntity {
       try {
         this.password = await bcrypt.hash(this.password, 10);
       } catch (error) {
-        console.log(error);
         throw new InternalServerErrorException();
       }
     }
