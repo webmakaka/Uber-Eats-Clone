@@ -60,8 +60,7 @@ export class RestaurantService {
       const newRestaurant = this.restaurants.create(createRestaurantInput);
       newRestaurant.owner = owner;
       const category = await this.categories.getOrCreate(
-        createRestaurantInput.categoryName,
-        createRestaurantInput.coverImg,
+        createRestaurantInput.categoryName
       );
       newRestaurant.category = category;
 
@@ -102,8 +101,7 @@ export class RestaurantService {
       let category: Category = null;
       if (editRestaurantInput.categoryName) {
         category = await this.categories.getOrCreate(
-          editRestaurantInput.categoryName,
-          editRestaurantInput.coverImg
+          editRestaurantInput.categoryName
         );
       }
 
@@ -221,8 +219,8 @@ export class RestaurantService {
   async allRestaurants({ page }: RestaurantsInput): Promise<RestaurantsOutput> {
     try {
       const [restaurants, totalResults] = await this.restaurants.findAndCount({
-        skip: (page - 1) * 25,
-        take: 25,
+        skip: (page - 1) * 3,
+        take: 3,
         order: {
           isPromoted: 'DESC',
         },
@@ -231,7 +229,7 @@ export class RestaurantService {
       return {
         ok: true,
         results: restaurants,
-        totalPages: Math.ceil(totalResults / 25),
+        totalPages: Math.ceil(totalResults / 3),
         totalResults,
       };
     } catch {

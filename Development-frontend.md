@@ -177,7 +177,7 @@ https://github.com/FortAwesome/react-fontawesome#documentation
 
 ### 17.1 - Categories Style
 
-**Images:**
+**Images categories:**
 
 ```
 https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/bbq.png
@@ -194,6 +194,8 @@ https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/italian.png
 // GET ALL CATEGORIES
 ```
 
+I think need manually update id db category images.
+
 <br/>
 
 ![Application](/img/pic-part02-les17-pic01.png?raw=true)
@@ -202,7 +204,7 @@ https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/italian.png
 
 ### 17.2 - Restaurants List
 
-**Images:**
+**Images restaurants:**
 
 ```
 https://d1ralsognjng37.cloudfront.net/b43e3aa8-ad1f-48d9-9109-6024f5ff7793.jpeg
@@ -222,6 +224,14 @@ https://duyt4h9nfnj50.cloudfront.net/resized/1537291913826-w2880-3f.jpg
 <br/>
 
 ![Application](/img/pic-part02-les17-pic02.png?raw=true)
+
+<br/>
+
+### 17.3 - Restaurants Pagination
+
+<br/>
+
+![Application](/img/pic-part02-les17-pic03.png?raw=true)
 
 <br/>
 
