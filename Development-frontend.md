@@ -246,6 +246,18 @@ We will use react-helmet-async
 
 <br/>
 
+### 17.7 - Code Challenge
+
+<br/>
+
+### 17.8 - 17.9 - Restaurant
+
+<br/>
+
+![Application](/img/pic-part02-les17-pic04.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
