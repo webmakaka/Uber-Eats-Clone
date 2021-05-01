@@ -240,7 +240,9 @@ https://duyt4h9nfnj50.cloudfront.net/resized/1537291913826-w2880-3f.jpg
 Remove helmet package.  
 We will use react-helmet-async
 
+<br/>
 
+### 17.6 - Category
 
 <br/>
 
