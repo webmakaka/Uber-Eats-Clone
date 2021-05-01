@@ -235,6 +235,15 @@ https://duyt4h9nfnj50.cloudfront.net/resized/1537291913826-w2880-3f.jpg
 
 <br/>
 
+### 17.4 - 17.5 - Search
+
+Remove helmet package.  
+We will use react-helmet-async
+
+
+
+<br/>
+
 ---
 
 <br/>
