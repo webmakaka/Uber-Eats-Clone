@@ -36,7 +36,7 @@
     "start": "npm run apollo:codegen && npm run tailwind:build && react-scripts start",
     "start1": "npm run tailwind:build && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "test:coverage": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
