@@ -1,13 +1,13 @@
-name: tests-backend
+name: tests-frontend
 
 on:
   push:
     paths:
-      - 'app/backend/**'
+      - 'app/frontend/**'
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: cd app/backend && yarn install && npm run test
+      - run: cd app/frontend && yarn install && npm run test
