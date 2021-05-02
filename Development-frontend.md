@@ -272,7 +272,11 @@ We will use react-helmet-async
 
 <br/>
 
-### 18.2 - FormError and Restaurant Tests
+### 18.3 - FormError and Restaurant Tests
+
+<br/>
+
+### 18.4 - Testing Header and 404
 
 <br/>
 
