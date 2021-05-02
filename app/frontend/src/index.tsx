@@ -1,10 +1,10 @@
 import { ApolloProvider } from '@apollo/client/react';
 import { client } from 'apolloConfig';
+import { App } from 'components/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import 'styles/styles.css';
-import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
