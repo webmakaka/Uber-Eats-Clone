@@ -262,6 +262,12 @@ We will use react-helmet-async
 
 <br/>
 
+### 18.1 - App Tests
+
+    $ npm run test:coverage
+
+<br/>
+
 ---
 
 <br/>
