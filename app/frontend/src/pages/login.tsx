@@ -12,7 +12,7 @@ import {
   loginMutationVariables,
 } from '__generated__/loginMutation';
 
-const LOGIN_MUTATION = gql`
+export const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
     login(input: $loginInput) {
       ok
@@ -94,7 +94,7 @@ export const Login = () => {
           )}
 
           {errors.email?.type === 'pattern' && (
-            <FormError errorMessage={'Please enter a vlid email'} />
+            <FormError errorMessage={'Please enter a valid email'} />
           )}
 
           <input

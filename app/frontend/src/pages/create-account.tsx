@@ -100,7 +100,7 @@ export const CreateAccount = () => {
           )}
 
           {errors.email?.type === 'pattern' && (
-            <FormError errorMessage={'Please enter a vlid email'} />
+            <FormError errorMessage={'Please enter a valid email'} />
           )}
 
           <input
