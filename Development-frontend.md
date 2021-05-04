@@ -315,6 +315,18 @@ https://testing-library.com/docs/react-testing-library/setup/
 
 <br/>
 
+### 19.1 - Our First Cypress Test
+
+https://testing-library.com/docs/cypress-testing-library/intro/
+
+    $ yarn add @testing-library/cypress
+
+<br/>
+
+### 19.2 - Login E2E
+
+<br/>
+
 ---
 
 <br/>
