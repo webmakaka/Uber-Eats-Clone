@@ -286,6 +286,22 @@ We will use react-helmet-async
 
 <br/>
 
+### 18.8 - 18.10 - CreateAccount Tests
+
+https://testing-library.com/docs/react-testing-library/setup/
+
+<br/>
+
+### 18.11 - Conclusions
+
+![Application](/img/pic-part02-les18-pic01.png?raw=true)
+
+<br/>
+
+![Application](/img/pic-part02-les18-pic02.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
