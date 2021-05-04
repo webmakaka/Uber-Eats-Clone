@@ -294,11 +294,24 @@ https://testing-library.com/docs/react-testing-library/setup/
 
 ### 18.11 - Conclusions
 
+<br/>
+
 ![Application](/img/pic-part02-les18-pic01.png?raw=true)
 
 <br/>
 
 ![Application](/img/pic-part02-les18-pic02.png?raw=true)
+
+<br/>
+
+### 19.0 - Installing Cypress
+
+    $ yarn add cypress
+    $ npx cypress open
+
+<br/>
+
+![Application](/img/pic-part02-les19-pic01.png?raw=true)
 
 <br/>
 
