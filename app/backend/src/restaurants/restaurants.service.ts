@@ -4,36 +4,37 @@ import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
 import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
 import {
   CreateDishInput,
-  CreateDishOutput
+  CreateDishOutput,
 } from 'restaurants/dtos/create-dish.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput
+  CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteDishInput,
-  DeleteDishOutput
+  DeleteDishOutput,
 } from 'restaurants/dtos/delete-dish.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput
+  DeleteRestaurantOutput,
 } from 'restaurants/dtos/delete-restaurant.dto';
 import { EditDishInput, EditDishOutput } from 'restaurants/dtos/edit-dish.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput
+  EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
+import { MyRestaurantsOutput } from 'restaurants/dtos/my-restaurants.dto';
 import {
   RestaurantInput,
-  RestaurantOutput
+  RestaurantOutput,
 } from 'restaurants/dtos/restaurant.dto';
 import {
   RestaurantsInput,
-  RestaurantsOutput
+  RestaurantsOutput,
 } from 'restaurants/dtos/restaurants.dto';
 import {
   SearchRestaurantInput,
-  SearchRestaurantOutput
+  SearchRestaurantOutput,
 } from 'restaurants/dtos/search-restaurant.dto';
 import { Category } from 'restaurants/entities/category.entity';
 import { Dish } from 'restaurants/entities/dish.entity';
@@ -60,7 +61,7 @@ export class RestaurantService {
       const newRestaurant = this.restaurants.create(createRestaurantInput);
       newRestaurant.owner = owner;
       const category = await this.categories.getOrCreate(
-        createRestaurantInput.categoryName
+        createRestaurantInput.categoryName,
       );
       newRestaurant.category = category;
 
@@ -101,7 +102,7 @@ export class RestaurantService {
       let category: Category = null;
       if (editRestaurantInput.categoryName) {
         category = await this.categories.getOrCreate(
-          editRestaurantInput.categoryName
+          editRestaurantInput.categoryName,
         );
       }
 
@@ -406,6 +407,20 @@ export class RestaurantService {
     }
   }
 
+  async myRestaurants(owner: User): Promise<MyRestaurantsOutput> {
+    try {
+      const restaurants = await this.restaurants.find({ owner });
+      return {
+        restaurants,
+        ok: true,
+      };
+    } catch {
+      return {
+        ok: false,
+        error: '[App] Could not find restaurants',
+      };
+    }
+  }
+
   // End: restaurants.service.ts
 }
-
