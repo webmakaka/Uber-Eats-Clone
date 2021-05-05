@@ -21,7 +21,7 @@ describe('First Test', () => {
 
   it('can fill out the form and login', () => {
     // @ts-ignore
-    user.login('right@gmail,com', '1234');
+    user.login('right@gmail.com', '1234');
 
     user.window().its('localStorage.nuber-token').should('be.a', 'string');
   });

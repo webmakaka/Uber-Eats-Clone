@@ -335,6 +335,14 @@ https://testing-library.com/docs/cypress-testing-library/intro/
 
 <br/>
 
+### 19.6 - 19.7 - EditProfile E2E
+
+<br/>
+
+![Application](/img/pic-part02-les19-pic02.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
