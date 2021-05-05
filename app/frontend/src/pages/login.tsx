@@ -124,7 +124,7 @@ export const Login = () => {
         <div>
           New to Nuber ?{' '}
           <Link to="/create-account" className="text-lime-600 hover:underline">
-            Create and Account
+            Create an Account
           </Link>
         </div>
       </div>

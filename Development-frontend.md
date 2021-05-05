@@ -327,6 +327,10 @@ https://testing-library.com/docs/cypress-testing-library/intro/
 
 <br/>
 
+### 19.3 - 19.4 - Create Account E2E
+
+<br/>
+
 ---
 
 <br/>
