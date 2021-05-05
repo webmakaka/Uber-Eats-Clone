@@ -20,13 +20,9 @@ describe('First Test', () => {
   });
 
   it('can fill out the form and login', () => {
-    user.visit('/');
-    user.findByPlaceholderText(/email/i).type('right@gmail.com');
-    user.findByPlaceholderText(/password/i).type('1234');
-    user
-      .findByRole('button')
-      .should('not.have.class', 'pointer-events-none')
-      .click();
+    // @ts-ignore
+    user.login('right@gmail,com', '1234');
+
     user.window().its('localStorage.nuber-token').should('be.a', 'string');
   });
 

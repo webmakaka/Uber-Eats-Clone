@@ -34,19 +34,15 @@ describe('Crate Account', () => {
       }
     });
     user.visit('/create-account');
-    user.findByPlaceholderText(/email/i).type('right1@gmail.com');
-    user.findByPlaceholderText(/password/i).type('123456');
+    user.findByPlaceholderText(/email/i).type('right@gmail.com');
+    user.findByPlaceholderText(/password/i).type('1234');
     user.findByRole('button').click();
 
     user.wait(1000);
-    user.title().should('eq', 'Login | Nuber Eats');
+
+    // @ts-ignore
+    user.login('right@gmail.com', '1234');
   });
-
-  // user.findByPlaceholderText(/email/i).type('right1@gmail.com');
-  //   user.findByPlaceholderText(/password/i).type('123456');
-  //   user.findByRole('button').click();
-
-  //   user.window().its('localStorage.nuber-token').should('be.a', 'string');
 
   // End of create-account.ts
 });
