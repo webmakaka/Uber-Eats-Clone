@@ -8,7 +8,7 @@
 
 ### 004. Backend Setup
 
-    $ yarn install -g @nestjs/cli
+    $ yarn global add @nestjs/cli
 
 <br/>
 

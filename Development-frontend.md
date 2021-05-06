@@ -361,6 +361,19 @@ Need an Owner account
 
 <br/>
 
+### 20.2 - 20.3 - File Upload
+
+    $ cd backend/
+    $ nest generate module uploads
+
+<br/>
+
+**I wont store images in aws**
+
+    $ yarn add aws-sdk
+
+<br/>
+
 ---
 
 <br/>

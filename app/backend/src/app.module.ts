@@ -20,6 +20,7 @@ import {UsersModule} from 'users/users.module';
 import {MailModule} from './mail/mail.module';
 import {OrdersModule} from './orders/orders.module';
 import {PaymentsModule} from './payments/payments.module';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
   imports: [
@@ -87,6 +88,7 @@ import {PaymentsModule} from './payments/payments.module';
     OrdersModule,
     CommonModule,
     PaymentsModule,
+    UploadsModule,
   ],
   controllers: [],
   providers: [],

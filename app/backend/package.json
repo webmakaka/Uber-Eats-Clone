@@ -31,6 +31,7 @@
     "@nestjs/typeorm": "^7.1.5",
     "@types/uuid": "^8.3.0",
     "apollo-server-express": "^2.24.0",
+    "aws-sdk": "^2.901.0",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
