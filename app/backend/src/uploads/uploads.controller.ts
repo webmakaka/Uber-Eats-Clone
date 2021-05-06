@@ -2,9 +2,9 @@ import {
   Controller,
   Post,
   UploadedFile,
-  UseInterceptors,
+  UseInterceptors
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import {FileInterceptor} from '@nestjs/platform-express';
 import * as AWS from 'aws-sdk';
 
 const BUCKET_NAME = 'bucket-abdddsss';

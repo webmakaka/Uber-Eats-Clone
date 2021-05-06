@@ -374,6 +374,14 @@ Need an Owner account
 
 <br/>
 
+### 20.4 - Create Restaurant (part Two)
+
+<br/>
+
+![Application](/img/pic-part02-les20-pic03.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
