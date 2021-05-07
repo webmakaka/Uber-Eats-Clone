@@ -1,9 +1,11 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useApolloClient, useMutation } from '@apollo/client';
 import { Button } from 'components/button';
 import { FormError } from 'components/form-error';
+import { MY_RESTAURANTS_QUERY } from 'pages/owner/my-restaurants';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import {
   createRestaurant,
   createRestaurantVariables,
@@ -14,6 +16,7 @@ const CREATE_RESTAURANT_MUTATION = gql`
     createRestaurant(input: $input) {
       error
       ok
+      restaurantId
     }
   }
 `;
@@ -26,18 +29,56 @@ interface IFormProps {
 }
 
 export const AddRestaurant = () => {
+  const client = useApolloClient();
+  const history = useHistory();
+  const [imageUrl, setImageUrl] = useState('');
+
   const onCompleted = (data: createRestaurant) => {
     const {
-      createRestaurant: { ok, error },
+      createRestaurant: { ok, restaurantId },
     } = data;
     if (ok) {
+      const { name, categoryName, address } = getValues();
       setUploading(false);
+      const queryResult = client.readQuery({ query: MY_RESTAURANTS_QUERY });
+
+      client.writeQuery({
+        query: MY_RESTAURANTS_QUERY,
+        data: {
+          myRestaurants: {
+            ...queryResult.myRestaurants,
+            restaurants: [
+              {
+                name,
+                address,
+                category: {
+                  name: categoryName,
+                  __typename: 'Category',
+                },
+                coverImg: imageUrl,
+                id: restaurantId,
+                isPromoted: false,
+                __typename: 'Restaurant',
+              },
+              ...queryResult.myRestaurants.restaurants,
+            ],
+          },
+        },
+      });
+      history.push('/');
     }
   };
   const [createRestaurantMutation, { data }] = useMutation<
     createRestaurant,
     createRestaurantVariables
-  >(CREATE_RESTAURANT_MUTATION, { onCompleted });
+  >(CREATE_RESTAURANT_MUTATION, {
+    onCompleted,
+    refetchQueries: [
+      {
+        query: MY_RESTAURANTS_QUERY,
+      },
+    ],
+  });
   const {
     register,
     getValues,
@@ -64,6 +105,8 @@ export const AddRestaurant = () => {
 
       const coverImg =
         'https://d4p17acsd5wyj.cloudfront.net/shortcuts/cuisines/bbq.png';
+
+      setImageUrl(coverImg);
 
       createRestaurantMutation({
         variables: {

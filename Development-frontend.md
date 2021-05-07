@@ -382,6 +382,14 @@ Need an Owner account
 
 <br/>
 
+### 20.5 - 20.5 - Cache Optimization
+
+<br/>
+
+![Application](/img/pic-part02-les20-pic04.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
