@@ -1,7 +1,6 @@
-import { gql, useApolloClient, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { Restaurant } from 'components/restaurant';
-import { RESTAURANT_FRAGMERNT } from 'fragments';
-import { useEffect } from 'react';
+import { RESTAURANT_FRAGMENT } from 'fragments';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { myRestaurants } from '__generated__/myRestaurants';
@@ -16,7 +15,7 @@ export const MY_RESTAURANTS_QUERY = gql`
       }
     }
   }
-  ${RESTAURANT_FRAGMERNT}
+  ${RESTAURANT_FRAGMENT}
 `;
 
 export const MyRestaurants = () => {

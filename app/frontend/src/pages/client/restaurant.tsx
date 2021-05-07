@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { RESTAURANT_FRAGMERNT } from 'fragments';
+import { RESTAURANT_FRAGMENT } from 'fragments';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router';
 import { restaurant, restaurantVariables } from '__generated__/restaurant';
@@ -14,7 +14,7 @@ const RESTAURANT_QUERY = gql`
       }
     }
   }
-  ${RESTAURANT_FRAGMERNT}
+  ${RESTAURANT_FRAGMENT}
 `;
 
 interface IRestaurantProps {

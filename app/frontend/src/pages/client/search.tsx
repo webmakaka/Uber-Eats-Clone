@@ -1,5 +1,5 @@
 import { gql, useLazyQuery } from '@apollo/client';
-import { RESTAURANT_FRAGMERNT } from 'fragments';
+import { RESTAURANT_FRAGMENT } from 'fragments';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useHistory, useLocation } from 'react-router';
@@ -20,7 +20,7 @@ const SEARCH_RESTAURANT = gql`
       }
     }
   }
-  ${RESTAURANT_FRAGMERNT}
+  ${RESTAURANT_FRAGMENT}
 `;
 
 export const Search = () => {

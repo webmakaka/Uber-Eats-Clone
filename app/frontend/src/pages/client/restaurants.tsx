@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { Restaurant } from 'components/restaurant';
-import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMERNT } from 'fragments';
+import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMENT } from 'fragments';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
@@ -31,7 +31,7 @@ const RESTAURANTS_QUERY = gql`
     }
   }
   ${CATEGORY_FRAGMENT}
-  ${RESTAURANT_FRAGMERNT}
+  ${RESTAURANT_FRAGMENT}
 `;
 export const Restaurants = () => {
   const [page, setPage] = useState(1);

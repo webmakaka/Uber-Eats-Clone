@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMERNT } from 'fragments';
+import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMENT } from 'fragments';
 import { useParams } from 'react-router';
 import { category, categoryVariables } from '__generated__/category';
 
@@ -19,7 +19,7 @@ const CATEGORY_QUERY = gql`
     }
   }
   ${CATEGORY_FRAGMENT}
-  ${RESTAURANT_FRAGMERNT}
+  ${RESTAURANT_FRAGMENT}
 `;
 
 interface ICategoryParams {
