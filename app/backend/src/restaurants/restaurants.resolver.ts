@@ -5,7 +5,7 @@ import {
   Parent,
   Query,
   ResolveField,
-  Resolver
+  Resolver,
 } from '@nestjs/graphql';
 import { AuthUser } from 'auth/auth-user.decorator';
 import { Role } from 'auth/role.decorator';
@@ -32,6 +32,10 @@ import {
   EditRestaurantInput,
   EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
+import {
+  MyRestaurantInput,
+  MyRestaurantOutput,
+} from 'restaurants/dtos/my-restaurant';
 import { MyRestaurantsOutput } from 'restaurants/dtos/my-restaurants.dto';
 import {
   RestaurantInput,
@@ -71,6 +75,15 @@ export class RestaurantResolver {
   @Role([EUserRole.Owner])
   myRestaurants(@AuthUser() owner: User): Promise<MyRestaurantsOutput> {
     return this.restaurantService.myRestaurants(owner);
+  }
+
+  @Query((returns) => MyRestaurantOutput)
+  @Role([EUserRole.Owner])
+  myRestaurant(
+    @AuthUser() owner: User,
+    @Args('input') myRestaurantInput: MyRestaurantInput,
+  ): Promise<MyRestaurantOutput> {
+    return this.restaurantService.myRestaurant(owner, myRestaurantInput);
   }
 
   @Mutation((returns) => EditRestaurantOutput)

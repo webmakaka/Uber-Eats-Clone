@@ -390,6 +390,14 @@ Need an Owner account
 
 <br/>
 
+### 20.7 - Restaurant Dashboard (part One)
+
+<br/>
+
+![Application](/img/pic-part02-les20-pic05.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
