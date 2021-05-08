@@ -414,6 +414,14 @@ Need an Owner account
 
 <br/>
 
+### 20.12 - Dish Component
+
+<br/>
+
+![Application](/img/pic-part02-les20-pic08.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
