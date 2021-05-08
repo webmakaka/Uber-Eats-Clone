@@ -1,51 +1,51 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {AllCategoriesOutput} from 'restaurants/dtos/all-categories.dto';
-import {CategoryInput, CategoryOutput} from 'restaurants/dtos/category.dto';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AllCategoriesOutput } from 'restaurants/dtos/all-categories.dto';
+import { CategoryInput, CategoryOutput } from 'restaurants/dtos/category.dto';
 import {
   CreateDishInput,
-  CreateDishOutput
+  CreateDishOutput,
 } from 'restaurants/dtos/create-dish.dto';
 import {
   CreateRestaurantInput,
-  CreateRestaurantOutput
+  CreateRestaurantOutput,
 } from 'restaurants/dtos/create-restaurant.dto';
 import {
   DeleteDishInput,
-  DeleteDishOutput
+  DeleteDishOutput,
 } from 'restaurants/dtos/delete-dish.dto';
 import {
   DeleteRestaurantInput,
-  DeleteRestaurantOutput
+  DeleteRestaurantOutput,
 } from 'restaurants/dtos/delete-restaurant.dto';
-import {EditDishInput, EditDishOutput} from 'restaurants/dtos/edit-dish.dto';
+import { EditDishInput, EditDishOutput } from 'restaurants/dtos/edit-dish.dto';
 import {
   EditRestaurantInput,
-  EditRestaurantOutput
+  EditRestaurantOutput,
 } from 'restaurants/dtos/edit.restaurant.dto';
 import {
   MyRestaurantInput,
-  MyRestaurantOutput
+  MyRestaurantOutput,
 } from 'restaurants/dtos/my-restaurant';
-import {MyRestaurantsOutput} from 'restaurants/dtos/my-restaurants.dto';
+import { MyRestaurantsOutput } from 'restaurants/dtos/my-restaurants.dto';
 import {
   RestaurantInput,
-  RestaurantOutput
+  RestaurantOutput,
 } from 'restaurants/dtos/restaurant.dto';
 import {
   RestaurantsInput,
-  RestaurantsOutput
+  RestaurantsOutput,
 } from 'restaurants/dtos/restaurants.dto';
 import {
   SearchRestaurantInput,
-  SearchRestaurantOutput
+  SearchRestaurantOutput,
 } from 'restaurants/dtos/search-restaurant.dto';
-import {Category} from 'restaurants/entities/category.entity';
-import {Dish} from 'restaurants/entities/dish.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {CategoryRepository} from 'restaurants/repositories/category.repository';
-import {ILike, Repository} from 'typeorm';
-import {User} from 'users/entities/user.entity';
+import { Category } from 'restaurants/entities/category.entity';
+import { Dish } from 'restaurants/entities/dish.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { CategoryRepository } from 'restaurants/repositories/category.repository';
+import { ILike, Repository } from 'typeorm';
+import { User } from 'users/entities/user.entity';
 
 @Injectable()
 export class RestaurantService {
@@ -434,7 +434,7 @@ export class RestaurantService {
     try {
       const restaurant = await this.restaurants.findOne(
         { owner, id },
-        { relations: ['menu'] },
+        { relations: ['menu', 'orders'] },
       );
       return {
         ok: true,

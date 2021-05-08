@@ -422,6 +422,30 @@ Need an Owner account
 
 <br/>
 
+### 20.13 - 20.15 - Victory Charts
+
+https://formidable.com/open-source/victory/
+
+    $ yarn addictory
+
+```
+// CREATE DISH (AS OWNER)
+
+
+// CREATE OR USE ACCOUNT CLIENT
+// LOGIN
+// GET RESTAURANT BY ID: V3
+
+// CREATE ORDER (5-10)
+// GET ORDERS
+```
+
+<br/>
+
+![Application](/img/pic-part02-les20-pic09.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>

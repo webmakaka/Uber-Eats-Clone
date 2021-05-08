@@ -934,7 +934,7 @@ returns:
 ### 111-112. Restaurant and Search
 
 ```
-// GET RESTAURANT BY ID
+// GET RESTAURANT BY ID: V1
 {
   restaurant (input: {restaurantId: 9}){
     error
@@ -1037,7 +1037,7 @@ mutation {
 <br/>
 
 ```
-// GET RESTAURANT BY ID
+// GET RESTAURANT BY ID: V2
 {
   restaurant (input: {restaurantId: 10}){
     error
@@ -1098,7 +1098,7 @@ mutation {
 ### 116. Edit and Delete Dish
 
 ```
-// GET RESTAURANT BY ID
+// GET RESTAURANT BY ID: V3
 {
   restaurant (input: {restaurantId: 10}){
     error
@@ -1230,17 +1230,16 @@ mutation {
 mutation {
   createOrder(
     input: {
-      restaurantId: 10
+      restaurantId: 27
       items: [
         {
-          dishId: 14
+          dishId: 4
           options: [
             { name: "Spice Level", choice: "Kill Me" }
             { name: "Size", choice: "XL" }
             { name: "Pickle" }
           ]
         }
-        { dishId: 5, options: [{ name: "Size", choice: "L" }] }
       ]
     }
   ) {

@@ -1,26 +1,26 @@
-import {Inject, Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import {
   NEW_COOKED_ORDER,
   NEW_ORDER_UPDATE,
   NEW_PENDING_ORDER,
-  PUB_SUB
+  PUB_SUB,
 } from 'common/common.constants';
-import {PubSub} from 'graphql-subscriptions';
+import { PubSub } from 'graphql-subscriptions';
 import {
   CreateOrderInput,
-  CreateOrderOutput
+  CreateOrderOutput,
 } from 'orders/dtos/create-order.dto';
-import {EditOrderInput, EditOrderOutput} from 'orders/dtos/edit-order.dto';
-import {GetOrderInput, GetOrderOutput} from 'orders/dtos/get-order.dto';
-import {GetOrdersInput, GetOrdersOutput} from 'orders/dtos/get-orders.dto';
-import {TakeOrderInput, TakeOrderOutput} from 'orders/dtos/take-order.dto';
-import {OrderItem} from 'orders/entities/order-item.entity';
-import {EOrderStatus, Order} from 'orders/entities/order.entity';
-import {Dish} from 'restaurants/entities/dish.entity';
-import {Restaurant} from 'restaurants/entities/restaurant.entity';
-import {Repository} from 'typeorm';
-import {EUserRole, User} from 'users/entities/user.entity';
+import { EditOrderInput, EditOrderOutput } from 'orders/dtos/edit-order.dto';
+import { GetOrderInput, GetOrderOutput } from 'orders/dtos/get-order.dto';
+import { GetOrdersInput, GetOrdersOutput } from 'orders/dtos/get-orders.dto';
+import { TakeOrderInput, TakeOrderOutput } from 'orders/dtos/take-order.dto';
+import { OrderItem } from 'orders/entities/order-item.entity';
+import { EOrderStatus, Order } from 'orders/entities/order.entity';
+import { Dish } from 'restaurants/entities/dish.entity';
+import { Restaurant } from 'restaurants/entities/restaurant.entity';
+import { Repository } from 'typeorm';
+import { EUserRole, User } from 'users/entities/user.entity';
 
 @Injectable()
 export class OrderService {
@@ -42,7 +42,6 @@ export class OrderService {
   ): Promise<CreateOrderOutput> {
     try {
       const restaurant = await this.restaurants.findOne(restaurantId);
-
       if (!restaurant) {
         return {
           ok: false,
