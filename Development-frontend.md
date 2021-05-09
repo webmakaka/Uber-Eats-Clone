@@ -446,6 +446,37 @@ https://formidable.com/open-source/victory/
 
 <br/>
 
+### 20.16 - Conclusions
+
+<br/>
+
+### 21.0 - Introduction [Skipped]
+
+https://paddle.com/
+
+**I wont use paddle account for now and skip this part**
+
+<br/>
+
+### 21.1 - Paddle Product Test
+
+    $ npx ngrok
+    $ npx ngrok http 4000
+
+<br/>
+
+### 21.2 - 21.3 - Paddle Integration
+
+<br/>
+
+### 22.0 - Extending the Dish Component
+
+<br/>
+
+![Application](/img/pic-part02-les22-pic01.png?raw=true)
+
+<br/>
+
 ---
 
 <br/>
