@@ -473,7 +473,15 @@ https://paddle.com/
 
 <br/>
 
+http://localhost:3000/restaurants/27
+
+<br/>
+
 ![Application](/img/pic-part02-les22-pic01.png?raw=true)
+
+<br/>
+
+### 22.1 - 22.3 - Making Order
 
 <br/>
 

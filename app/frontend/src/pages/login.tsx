@@ -69,14 +69,14 @@ export const Login = () => {
       <Helmet>
         <title>Login | Nuber Eats</title>
       </Helmet>
-      <div className="w-full max-w-screen-sm flex flex-col px-5 items-center">
-        <img src={nuberLogo} className="w-52 mb-10" alt="nuberLogo" />
-        <h4 className="w-full font-medium text-left text-3xl mb-5">
+      <div className="flex flex-col items-center w-full px-5 max-w-screen-sm">
+        <img src={nuberLogo} className="mb-10 w-52" alt="nuberLogo" />
+        <h4 className="w-full mb-5 text-3xl font-medium text-left">
           Welcome back
         </h4>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid gap-3 mt-5 w-full mb-5"
+          className="w-full mt-5 mb-5 grid gap-3"
         >
           <input
             {...register('email', {
@@ -89,7 +89,7 @@ export const Login = () => {
           />
 
           {errors.email?.message && (
-            <FormError errorMessage={errors.email?.message} />
+            <FormError errorMessage={errors.email?.message[0]} />
           )}
 
           {errors.email?.type === 'pattern' && (
@@ -107,7 +107,7 @@ export const Login = () => {
           />
 
           {errors.password?.message && (
-            <FormError errorMessage={errors.password?.message} />
+            <FormError errorMessage={errors.password?.message[0]} />
           )}
 
           {errors.password?.type === 'minLength' && (
