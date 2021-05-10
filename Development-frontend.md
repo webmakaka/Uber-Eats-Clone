@@ -481,7 +481,9 @@ http://localhost:3000/restaurants/27
 
 <br/>
 
-### 22.1 - 22.3 - Making Order
+### 22.1 - 22.6 - Making Order
+
+![Application](/img/pic-part02-les22-pic02.png?raw=true)
 
 <br/>
 

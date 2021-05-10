@@ -11,7 +11,6 @@ interface IDishProps {
   options?: restaurant_restaurant_restaurant_menu_options[] | null;
   addItemToOrder?: (dishId: number) => void;
   removeFromOrder?: (dishId: number) => void;
-  addOptionToItem?: (dishId: number, option: any) => void;
 }
 
 export const Dish: React.FC<IDishProps> = ({
@@ -25,7 +24,7 @@ export const Dish: React.FC<IDishProps> = ({
   options,
   addItemToOrder,
   removeFromOrder,
-  addOptionToItem,
+  children: dishOptions,
 }) => {
   const onClick = () => {
     if (orderStarted) {
@@ -45,10 +44,17 @@ export const Dish: React.FC<IDishProps> = ({
       }`}
     >
       <div className="mb-5">
-        <h3 className="text-lg font-medium">
+        <h3 className="text-lg font-medium flex items-center">
           {name}{' '}
           {orderStarted && (
-            <button onClick={onClick}>{isSelected ? 'Remove' : 'Add'}</button>
+            <button
+              className={`ml-3 py-1 px-3 focus:outline-none text-sm  text-white ${
+                isSelected ? 'bg-red-500' : ' bg-lime-600'
+              }`}
+              onClick={onClick}
+            >
+              {isSelected ? 'Remove' : 'Add'}
+            </button>
           )}
         </h3>
         <h4 className="font-medium">{description}</h4>
@@ -57,22 +63,7 @@ export const Dish: React.FC<IDishProps> = ({
       {isCustomer && options && options?.length !== 0 && (
         <div>
           <h5 className="mt-6 mb-3 font-medium">Dish Options</h5>
-          {options?.map((option, index) => (
-            <span
-              onClick={() =>
-                addOptionToItem
-                  ? addOptionToItem(id, {
-                      name: option.name,
-                    })
-                  : null
-              }
-              className="flex items-center border"
-              key={index}
-            >
-              <h6 className="mr-2">{option.name}</h6>
-              <h6 className="text-sm opacity-75">(${option.extra})</h6>
-            </span>
-          ))}
+          <div className="justify-start grid gap-2"> {dishOptions}</div>
         </div>
       )}
     </div>
