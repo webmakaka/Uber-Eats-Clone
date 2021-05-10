@@ -483,7 +483,19 @@ http://localhost:3000/restaurants/27
 
 ### 22.1 - 22.6 - Making Order
 
+<br/>
+
 ![Application](/img/pic-part02-les22-pic02.png?raw=true)
+
+<br/>
+
+### 23.0 - Order Component
+
+http://localhost:3000/orders/20
+
+<br/>
+
+![Application](/img/pic-part02-les21-pic01.png?raw=true)
 
 <br/>
 

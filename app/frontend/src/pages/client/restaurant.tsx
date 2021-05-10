@@ -152,8 +152,11 @@ export const Restaurant = () => {
   });
 
   const triggerConfirmOrder = () => {
+    if (placingOrder) {
+      return;
+    }
     if (orderItems.length === 0) {
-      alert('Cant place empty order');
+      alert("Can't place empty order");
       return;
     }
     const ok = window.confirm('You are about to place an order');

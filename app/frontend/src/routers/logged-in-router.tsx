@@ -10,6 +10,7 @@ import { MyRestaurant } from 'pages/owner/my-restaurant';
 import { MyRestaurants } from 'pages/owner/my-restaurants';
 import { ConfirmEmail } from 'pages/user/confirm-email';
 import { EditProfile } from 'pages/user/edit-profile';
+import { Order } from 'pages/user/order';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserRole } from '__generated__/globalTypes';
 
@@ -21,6 +22,10 @@ const commonRoutes = [
   {
     path: '/edit-profile',
     component: <EditProfile />,
+  },
+  {
+    path: '/orders/:id',
+    component: <Order />,
   },
 ];
 
@@ -67,7 +72,7 @@ export const LoggedInRouter = () => {
   if (!data || loading || error) {
     return (
       <div className="h-screen flex justify-center items-center">
-        <span className="font-medium text-xl tracking-wide">Loading...</span>
+        <span className="text-xl font-medium tracking-wide">Loading...</span>
       </div>
     );
   }
