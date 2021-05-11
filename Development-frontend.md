@@ -491,11 +491,31 @@ http://localhost:3000/restaurants/27
 
 ### 23.0 - Order Component
 
+<br/>
+
 http://localhost:3000/orders/20
 
 <br/>
 
 ![Application](/img/pic-part02-les21-pic01.png?raw=true)
+
+<br/>
+
+### 23.1 - Subscription Setup
+
+<br/>
+
+    $ yarn add subscriptions-transport-ws
+
+<br/>
+
+https://www.apollographql.com/docs/react/api/link/apollo-link-ws/
+
+https://www.apollographql.com/docs/react/data/subscriptions/
+
+<br/>
+
+![Application](/img/pic-part02-les21-pic02.png?raw=true)
 
 <br/>
 
