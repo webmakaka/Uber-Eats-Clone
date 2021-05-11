@@ -1,12 +1,10 @@
-import { gql, useQuery, useSubscription } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { FULL_ORDER_FRAGMENT } from 'fragments';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router';
 import { getOrder, getOrderVariables } from '__generated__/getOrder';
-import {
-  orderUpdates,
-  orderUpdatesVariables,
-} from '__generated__/orderUpdates';
+import { orderUpdates } from '__generated__/orderUpdates';
 
 const GET_ORDER = gql`
   query getOrder($input: GetOrderInput!) {
@@ -36,24 +34,46 @@ interface IParams {
 
 export const Order = () => {
   const params = useParams<IParams>();
-  const { data } = useQuery<getOrder, getOrderVariables>(GET_ORDER, {
-    variables: {
-      input: {
-        id: +params.id,
+  const { data, subscribeToMore } = useQuery<getOrder, getOrderVariables>(
+    GET_ORDER,
+    {
+      variables: {
+        input: {
+          id: +params.id,
+        },
       },
-    },
-  });
-  const { data: subsciptionData } = useSubscription<
-    orderUpdates,
-    orderUpdatesVariables
-  >(ORDER_SUBSCRIPTION, {
-    variables: {
-      input: {
-        id: +params.id,
-      },
-    },
-  });
-  console.log(subsciptionData);
+    }
+  );
+
+  useEffect(() => {
+    if (data?.getOrder.ok) {
+      subscribeToMore({
+        document: ORDER_SUBSCRIPTION,
+        variables: {
+          input: {
+            id: +params.id,
+          },
+        },
+        updateQuery: (
+          prev,
+          {
+            subscriptionData: { data },
+          }: { subscriptionData: { data: orderUpdates } }
+        ) => {
+          if (!data) return prev;
+          return {
+            getOrder: {
+              ...prev.getOrder,
+              order: {
+                ...data.orderUpdates,
+              },
+            },
+          };
+        },
+      });
+    }
+  }, [data]);
+
   return (
     <div className="container flex justify-center mt-32">
       <Helmet>
@@ -74,7 +94,7 @@ export const Order = () => {
               {data?.getOrder.order?.restaurant?.name}
             </span>
           </div>
-          <div className="border-t pt-5 border-gray-700 ">
+          <div className="pt-5 border-t border-gray-700 ">
             Deliver To:{' '}
             <span className="font-medium">
               {data?.getOrder.order?.customer?.email}

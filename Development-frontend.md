@@ -519,6 +519,19 @@ https://www.apollographql.com/docs/react/data/subscriptions/
 
 <br/>
 
+### 23.2 - subscribeToMore
+
+```
+// LOGIN AS OWNER
+```
+
+```
+// EDIT ORDER
+status: Cooking
+```
+
+<br/>
+
 ---
 
 <br/>
