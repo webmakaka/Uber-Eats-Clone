@@ -1,10 +1,12 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { FULL_ORDER_FRAGMENT } from 'fragments';
 import { useMe } from 'hooks/useMe';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router';
+import { editOrder, editOrderVariables } from '__generated__/editOrder';
 import { getOrder, getOrderVariables } from '__generated__/getOrder';
+import { OrderStatus, UserRole } from '__generated__/globalTypes';
 import { orderUpdates } from '__generated__/orderUpdates';
 
 const GET_ORDER = gql`
@@ -29,6 +31,15 @@ const ORDER_SUBSCRIPTION = gql`
   ${FULL_ORDER_FRAGMENT}
 `;
 
+const EDIT_ORDER = gql`
+  mutation editOrder($input: EditOrderInput!) {
+    editOrder(input: $input) {
+      ok
+      error
+    }
+  }
+`;
+
 interface IParams {
   id: string;
 }
@@ -36,6 +47,8 @@ interface IParams {
 export const Order = () => {
   const params = useParams<IParams>();
   const { data: userData } = useMe();
+  const [editOrderMutation] =
+    useMutation<editOrder, editOrderVariables>(EDIT_ORDER);
   const { data, subscribeToMore } = useQuery<getOrder, getOrderVariables>(
     GET_ORDER,
     {
@@ -76,6 +89,17 @@ export const Order = () => {
     }
   }, [data]);
 
+  const onButtonClick = (newStatus: OrderStatus) => {
+    editOrderMutation({
+      variables: {
+        input: {
+          id: +params.id,
+          status: newStatus,
+        },
+      },
+    });
+  };
+
   return (
     <div className="container flex justify-center mt-32">
       <Helmet>
@@ -108,26 +132,36 @@ export const Order = () => {
               {data?.getOrder.order?.driver?.email || 'Not yet.'}
             </span>
           </div>
-          <div className="py-5 border-t border-b border-gray-700">
-            Me: <span className="font-medium">{userData?.me.role}</span>
-          </div>
-          <div className="py-5 border-t border-b border-gray-700">
-            Order Status:{' '}
-            <span className="font-medium">{data?.getOrder.order?.status}</span>
-          </div>
-          {userData?.me.role === 'Client' && (
+          {userData?.me.role === UserRole.Client && (
             <span className="mt-5 mb-3 text-2xl text-center text-lime-600">
-              Status: {data?.getOrder.order?.status}
+              Order Status: {data?.getOrder.order?.status}
             </span>
           )}
-          {userData?.me.role === 'Owner' && (
+          {userData?.me.role === UserRole.Owner && (
             <>
-              {data?.getOrder.order?.status === 'Pending' && (
-                <button className="btn">Accept Order</button>
+              {data?.getOrder.order?.status === OrderStatus.Pending && (
+                <button
+                  className="btn"
+                  onClick={() => onButtonClick(OrderStatus.Cooking)}
+                >
+                  Accept Order
+                </button>
               )}
-              {data?.getOrder.order?.status === 'Cooking' && (
-                <button className="btn">Order Cooked</button>
+              {data?.getOrder.order?.status === OrderStatus.Cooking && (
+                <button
+                  className="btn"
+                  onClick={() => onButtonClick(OrderStatus.Cooked)}
+                >
+                  Order Cooked
+                </button>
               )}
+
+              {data?.getOrder.order?.status !== OrderStatus.Cooking &&
+                data?.getOrder.order?.status !== OrderStatus.Pending && (
+                  <span className="font-medium">
+                    Status {data?.getOrder.order?.status}
+                  </span>
+                )}
             </>
           )}
         </div>
