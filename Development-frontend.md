@@ -497,7 +497,7 @@ http://localhost:3000/orders/20
 
 <br/>
 
-![Application](/img/pic-part02-les21-pic01.png?raw=true)
+![Application](/img/pic-part02-les23-pic01.png?raw=true)
 
 <br/>
 
@@ -515,7 +515,7 @@ https://www.apollographql.com/docs/react/data/subscriptions/
 
 <br/>
 
-![Application](/img/pic-part02-les21-pic02.png?raw=true)
+![Application](/img/pic-part02-les23-pic02.png?raw=true)
 
 <br/>
 
@@ -537,6 +537,55 @@ status: Cooking
 <br/>
 
 ### 23.4 - Edit Order
+
+<br/>
+
+### 23.5 - 23.7 - Driver Dashboard (I am not planning to use Google API)
+
+    $ yarn add google-map-react
+    $ yarn add @types/google-map-react
+
+<br/>
+
+console.cloud.google.com -> API Library -> Maps JavaScript API -> Enable
+
+<br/>
+
+Create credentials
+
+<br/>
+
+Login as driver
+
+<br/>
+
+![Application](/img/pic-part02-les23-pic03.png?raw=true)
+
+<br/>
+
+### 23.8 - Address Geocoding
+
+    $ yarn add --dev @types/googlemaps
+
+<br/>
+
+console.cloud.google.com -> API Library -> Directions API -> Enable
+
+<br/>
+
+### 23.9 - Painting Directions
+
+<br/>
+
+### 23.10 - Coocked Order Subscription
+
+<br/>
+
+### 23.11 - Final Test
+
+<br/>
+
+### 23.12 - Conclusions
 
 <br/>
 

@@ -47,8 +47,9 @@ interface IParams {
 export const Order = () => {
   const params = useParams<IParams>();
   const { data: userData } = useMe();
-  const [editOrderMutation] =
-    useMutation<editOrder, editOrderVariables>(EDIT_ORDER);
+  const [editOrderMutation] = useMutation<editOrder, editOrderVariables>(
+    EDIT_ORDER
+  );
   const { data, subscribeToMore } = useQuery<getOrder, getOrderVariables>(
     GET_ORDER,
     {
@@ -163,6 +164,31 @@ export const Order = () => {
                   </span>
                 )}
             </>
+          )}
+
+          {userData?.me.role === UserRole.Delivery && (
+            <>
+              {data?.getOrder.order?.status === OrderStatus.Cooked && (
+                <button
+                  className="btn"
+                  onClick={() => onButtonClick(OrderStatus.PickedUp)}
+                >
+                  Picked UP
+                </button>
+              )}
+              {data?.getOrder.order?.status === OrderStatus.PickedUp && (
+                <button
+                  className="btn"
+                  onClick={() => onButtonClick(OrderStatus.Delivered)}
+                >
+                  Order Delivered
+                </button>
+              )}
+            </>
+          )}
+
+          {data?.getOrder.order?.status === OrderStatus.Delivered && (
+            <span className="font-medium">Thank you for using Nuber Eats</span>
           )}
         </div>
       </div>
