@@ -589,6 +589,10 @@ console.cloud.google.com -> API Library -> Directions API -> Enable
 
 <br/>
 
+### 24.0 - Heroku Setup [Skipped]
+
+<br/>
+
 ---
 
 <br/>
