@@ -15,7 +15,7 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "NODE_PATH=./src jest",
-    "test:watch": "npm run  --watch",
+    "test:watch": "npm run test --watch",
     "test:cov": "NODE_PATH=./src jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "NODE_PATH=./src jest --config ./test/jest-e2e.json",
