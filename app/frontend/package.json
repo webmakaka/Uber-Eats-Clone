@@ -19,7 +19,7 @@
     "@types/react-router-dom": "^5.1.7",
     "apollo": "^2.33.2",
     "autoprefixer": "^10.2.5",
-    "cypress": "^7.3.0",
+    "cypress": "^9.1.0",
     "google-map-react": "^2.1.9",
     "graphql": "^15.5.0",
     "mock-apollo-client": "^1.1.0",
